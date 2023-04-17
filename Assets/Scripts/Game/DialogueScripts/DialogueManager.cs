@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     public Button continueButton; 
     public Button acceptButton; //Update drones ranges and and go to next sentence if there is one.
     public Button refuseButton; //same as accept but doesnt updateDroneRanges
-    public GameControler gameController; //Needed to notify gameController that drone rangesAndBalance can be updated based on choice to accept or refuse.
+    public CelluloGameController gameController; //Needed to notify gameController that drone rangesAndBalance can be updated based on choice to accept or refuse.
     //Alternatively choice could just notify gameController.acceptRefuseChoiceMade();
     private TextMeshProUGUI dialogueText;
     public bool isMainTabText = false;
