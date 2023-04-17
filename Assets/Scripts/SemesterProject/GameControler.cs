@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 //Blake Hill
+/*
 public enum choices
 {
 	None, 
@@ -19,7 +20,7 @@ public enum choices
     resevoirDirector, //choice id: 6
     shipIt, //choice id: 7
 }
-
+*/
 public class GameControler : MonoBehaviour
 {
     //TODO perhaps make new script for missionStatementScene so its less cluttered
