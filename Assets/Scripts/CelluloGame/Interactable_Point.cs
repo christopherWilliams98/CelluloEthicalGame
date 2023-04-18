@@ -60,10 +60,10 @@ public class Interactable_Point : MonoBehaviour
                     textBox.text = "Ship finished product";
                     break;
 
-                case "ExternalLocationPad":
-                    textBox.text = "Test drone on external location";
+                case "FarmPad":
+                    textBox.text = "Test drone on external location \n" + "COST: 1 week";
                     break;
-                    
+
                 case "ReturnPad":
                     textBox.text = "Return to main map";
                     break;
