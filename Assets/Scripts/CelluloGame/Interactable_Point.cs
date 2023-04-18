@@ -103,7 +103,6 @@ public class Interactable_Point : MonoBehaviour
 
             // Disable the return pad
             returnPad.SetActive(false);
-            gameController.enableDialogueBox(false);
             // Move drone image back to the main map
             droneImage.anchoredPosition3D = new Vector3(0, 0, 0);
             droneImage.sizeDelta = new Vector2(75,75);
