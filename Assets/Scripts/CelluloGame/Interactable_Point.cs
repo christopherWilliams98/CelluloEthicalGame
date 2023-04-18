@@ -126,7 +126,7 @@ public class Interactable_Point : MonoBehaviour
         }
         else
         {
-            // Enter the desired house
+            // Enter the desired location
             teleportLocation.SetActive(true);
 
             if(this.gameObject.transform.parent.name == "HousePads"){
