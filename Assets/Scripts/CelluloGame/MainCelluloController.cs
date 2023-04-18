@@ -30,7 +30,7 @@ public class MainCelluloController : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         playerMenuEnabled = false;
-        makeOneGreenOneRed();
+        makeOneGreenOneRed(agent);
     }
 
     // Enable stat menu when leaving pads
@@ -50,13 +50,13 @@ public class MainCelluloController : MonoBehaviour
     }
 
     // Make one Cellulo LED green and one red.
-    public void makeOneGreenOneRed()
-    {  
-        /*
-         GameObject _leds = agent.transform.Find("Leds").gameObject;
-        agent.SetVisualEffect(VisualEffect.VisualEffectConstSingle, Color.green, 255);
-        _leds.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0].color = color;
-*/
+    public void makeOneGreenOneRed(CelluloAgent player)
+    {
+        //agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(255,0,266,0), 255);
+        GameObject _leds = agent.transform.Find("Leds").gameObject;
+        _leds.transform.GetChild(1).gameObject.GetComponent<Renderer>().materials[0].color = Color.green;
+        _leds.transform.GetChild(2).gameObject.GetComponent<Renderer>().materials[0].color = Color.red;
+
     }
 
 }
