@@ -23,8 +23,7 @@ public class Interactable_Point : MonoBehaviour
 
     private string temp;
 
-
-    
+    private bool isMakingChoice;
     
     private void Update()
     {
@@ -34,7 +33,21 @@ public class Interactable_Point : MonoBehaviour
             Interact();
             
         }
+        if(triggerActive && isMakingChoice){
+            int choice = checkButtonPressed();
+            if(choice == 1 || Input.GetKeyDown(KeyCode.F)){
+                // Accept
+                Debug.Log("Accepted");  
+            }
+            else if (choice == 2 || Input.GetKeyDown(KeyCode.G)){
+                // Decline
+                Debug.Log("Declined");
+            }
+            else {
+                // Do nothing
+            }
     }
+}
 
     // Activate pad interaction when a player enters its range
     public void OnTriggerEnter(Collider other)
@@ -76,6 +89,7 @@ public class Interactable_Point : MonoBehaviour
                 case "bird_reservoir_choice_1":
                     textBox.text = "Make drone goodn't? 1: Press green to Accept, red to decline the decision";
                     makeOneGreenOneRed();
+                    isMakingChoice = true;
                     break;
             }
 
@@ -89,6 +103,7 @@ public class Interactable_Point : MonoBehaviour
         {
             GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
             triggerActive = false;
+            isMakingChoice = false;
             reset_leds();
 
         }
