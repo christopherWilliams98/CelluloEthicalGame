@@ -449,7 +449,7 @@ public class CelluloGameController : MonoBehaviour
         Debug.Log("cost of choice" + mainChoiceFinancialCosts[locked_choice_id].ToString());
         remainingTime-= mainChoiceTimeCosts[locked_choice_id];
         availableBalance -= mainChoiceFinancialCosts[locked_choice_id];
-        remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
+        remainingTimeText.text = "Time Left: " + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         
     }
