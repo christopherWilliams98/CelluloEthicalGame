@@ -145,18 +145,31 @@ public class Interactable_Point : MonoBehaviour
         
     }
 
-        // Make one Cellulo LED green and one red.
-        public void makeOneGreenOneRed()
+    // Make one Cellulo LED green and one red.
+    public void makeOneGreenOneRed()
     {
         GameObject _leds = agent.transform.Find("Leds").gameObject;
         _leds.transform.GetChild(1).gameObject.GetComponent<Renderer>().materials[0].color = Color.green;
         _leds.transform.GetChild(2).gameObject.GetComponent<Renderer>().materials[0].color = Color.red;
     }
-        public void reset_leds()
+    //resets all leds to purple
+    public void reset_leds()
     {
         agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(255,0,266,255), 255);
-
     }
 
+    // Check if the player is pressing a Cellulo led button
+    int checkButtonPressed(){
+        Cellulo robot = agent._celluloRobot;
+        if(robot == null){
+            return -1;
+        }
 
+        for(int i = 0; i < 6; i++){
+            if(robot.TouchKeys[i] == Touch.LongTouch){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
