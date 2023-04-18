@@ -83,7 +83,7 @@ public class Interactable_Point : MonoBehaviour
                     break;
 
                 case "ReturnPad":
-                    textBox.text = "Return to main map";
+                    textBox.text = "Return back to city";
                     break;
 
                 case "bird_reservoir_choice_1":
@@ -125,13 +125,19 @@ public class Interactable_Point : MonoBehaviour
         {
             // Enable all other house pads
             allPads.SetActive(true);
-
             // Disable the return pad
             returnPad.SetActive(false);
+
+
             // Move drone image back to the main map
-            droneImage.anchoredPosition3D = new Vector3(0, 0, 0);
-            droneImage.sizeDelta = new Vector2(75,75);
+            //droneImage.anchoredPosition3D = new Vector3(0, 0, 0);
+            //droneImage.sizeDelta = new Vector2(75,75);
             // Exit current location
+
+            // Clear the dialogue box
+            TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
+            textBox.text = "";
+
             foreach(Transform house in GameObject.Find("HouseMaps").transform)
             {
                 if(house.gameObject.activeSelf == true){
@@ -147,9 +153,10 @@ public class Interactable_Point : MonoBehaviour
             if(this.gameObject.transform.parent.name == "HousePads"){
                 gameController.lockInChoice();
             }
+
             // Move drone image to the desired house
-            droneImage.anchoredPosition3D = new Vector3(60f, 240f, 0);
-            droneImage.sizeDelta = new Vector2(40,40);
+            //droneImage.anchoredPosition3D = new Vector3(60f, 240f, 0);
+            //droneImage.sizeDelta = new Vector2(40,40);
 
             // Enable the return pad
             returnPad.SetActive(true);
