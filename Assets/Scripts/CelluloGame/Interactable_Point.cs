@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /*
     * This script is attached to the pads in the house maps
@@ -37,6 +38,40 @@ public class Interactable_Point : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             triggerActive = true;
+            TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
+            switch(this.gameObject.name){
+                case "CityParkPad":
+                    textBox.text = "Test drone in city park \n" + "COST: 0.5 weeks";
+                    break;
+                
+                case "TechShopPad":
+                    textBox.text = "Consult drone expert \n" + "COST: 0.5 weeks";
+                    break;
+
+                case "CityHallPad":
+                    textBox.text = "Consult local council \n" + "COST: X weeks";
+                    break;
+
+                case "BirdReservoirPad":
+                    textBox.text = "Consult bird reservoir director \n" + "COST: 1 week";
+                    break;
+
+                case "PostOfficePad":
+                    textBox.text = "Ship finished product";
+                    break;
+
+                case "ExternalLocationPad":
+                    textBox.text = "Test drone on external location";
+                    break;
+                    
+                case "ReturnPad":
+                    textBox.text = "Return to main map";
+                    break;
+
+                
+            }
+
+            
         }
     }
 
@@ -45,6 +80,7 @@ public class Interactable_Point : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = "";
             triggerActive = false;
         }
     }
