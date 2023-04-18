@@ -2530,7 +2530,7 @@ GameObject:
   - component: {fileID: 102643335}
   - component: {fileID: 102643337}
   m_Layer: 0
-  m_Name: TestHouse
+  m_Name: CityHallPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2630,7 +2630,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 721340028}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1715440010}
 --- !u!1 &103649639
 GameObject:
   m_ObjectHideFlags: 0
@@ -4489,11 +4489,11 @@ Transform:
   m_GameObject: {fileID: 157311480}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 6.8499994, y: 0, z: -5.15}
-  m_LocalScale: {x: 1.45, y: 1.45, z: 1}
+  m_LocalScale: {x: 1.45, y: 1.4499999, z: 1}
   m_Children:
   - {fileID: 1986808343}
-  m_Father: {fileID: 599795147}
-  m_RootOrder: 6
+  m_Father: {fileID: 1199971226}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &157311482
 BoxCollider:
@@ -11957,7 +11957,7 @@ GameObject:
   - component: {fileID: 502927195}
   - component: {fileID: 502927194}
   m_Layer: 0
-  m_Name: TestHouse (4)
+  m_Name: TechShopPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11975,7 +11975,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0}
   m_Children: []
   m_Father: {fileID: 1471612691}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &502927194
 MonoBehaviour:
@@ -11990,10 +11990,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerActive: 0
-  teleportLocation: {fileID: 721340028}
+  teleportLocation: {fileID: 548110492}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1715440010}
 --- !u!65 &502927195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12787,7 +12787,7 @@ Transform:
   m_Children:
   - {fileID: 554722898}
   m_Father: {fileID: 1199971226}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &548110494
 BoxCollider:
@@ -16907,7 +16907,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0}
   m_Children: []
   m_Father: {fileID: 1471612691}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &687532321
 MonoBehaviour:
@@ -16922,10 +16922,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerActive: 0
-  teleportLocation: {fileID: 721340028}
+  teleportLocation: {fileID: 1340464877}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1715440010}
 --- !u!65 &687532322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17868,7 +17868,7 @@ Transform:
   m_Children:
   - {fileID: 946333159}
   m_Father: {fileID: 1199971226}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &721340030
 BoxCollider:
@@ -19346,9 +19346,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789905601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -400.00003, y: -250.11392, z: 0}
+  m_LocalPosition: {x: -244, y: 239.15, z: 0}
   m_LocalScale: {x: 0.9111617, y: 0.9111617, z: 0.9111618}
   m_Children:
+  - {fileID: 1186355952}
   - {fileID: 1448212025}
   - {fileID: 1333730078}
   m_Father: {fileID: 1931456875}
@@ -21221,6 +21222,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 1
   inputKeyboard: 0
+--- !u!114 &838800936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838800930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78da769f3e34b4246b3e7a1ef98e4d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wantsInteraction: 0
+  statMenu: {fileID: 1206294886}
 --- !u!1 &839287920
 GameObject:
   m_ObjectHideFlags: 0
@@ -31214,6 +31229,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1186355951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186355952}
+  - component: {fileID: 1186355954}
+  - component: {fileID: 1186355953}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1186355952
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186355951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 789905602}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 210, y: 75}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1186355953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186355951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.4117647}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1186355954
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186355951}
+  m_CullTransparentMesh: 1
 --- !u!1 &1189093096
 GameObject:
   m_ObjectHideFlags: 0
@@ -31651,10 +31741,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 157311481}
   - {fileID: 721340029}
+  - {fileID: 1564239732}
   - {fileID: 1288003526}
   - {fileID: 548110493}
-  - {fileID: 1564239732}
   - {fileID: 1340464878}
   m_Father: {fileID: 599795147}
   m_RootOrder: 5
@@ -31692,7 +31783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -167.4, y: 172}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1208605926
@@ -33499,7 +33590,7 @@ GameObject:
   - component: {fileID: 1264787937}
   - component: {fileID: 1264787936}
   m_Layer: 0
-  m_Name: TestHouse (2)
+  m_Name: CityParkPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33532,10 +33623,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerActive: 0
-  teleportLocation: {fileID: 721340028}
+  teleportLocation: {fileID: 1564239731}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1715440010}
 --- !u!65 &1264787937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34099,7 +34190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.59436, y: 96.00001}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 301.4897, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1279347222
@@ -34394,7 +34485,7 @@ Transform:
   m_Children:
   - {fileID: 1352148685}
   m_Father: {fileID: 1199971226}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &1288003527
 BoxCollider:
@@ -35379,8 +35470,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294637301
-  m_fontColor: {r: 0.9607843, g: 0.9647059, b: 0.98039216, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -35433,7 +35524,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -1.067421, w: 0}
+  m_margin: {x: 0, y: 0, z: 147.39542, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -35459,11 +35550,11 @@ RectTransform:
   m_LocalScale: {x: 1.0975001, y: 1.0975001, z: 1.0975}
   m_Children: []
   m_Father: {fileID: 789905602}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 667.0546, y: 447.21356}
+  m_AnchoredPosition: {x: 90, y: 3}
   m_SizeDelta: {x: 339.4766, y: 25.4501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1340434159
@@ -35578,7 +35669,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1199971226}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &1340464879
 BoxCollider:
@@ -39103,11 +39194,11 @@ RectTransform:
   m_LocalScale: {x: 1.0975001, y: 1.0975001, z: 1.0975}
   m_Children: []
   m_Father: {fileID: 789905602}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 667.0546, y: 407.29755}
+  m_AnchoredPosition: {x: 107, y: -24}
   m_SizeDelta: {x: 339.4766, y: 25.4501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1448212026
@@ -39138,7 +39229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Balance: 20000$'
+  m_text: 'Balance: 300 CHF'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bc1de604b91fb1f4bc8d2beeefe2c74, type: 2}
   m_sharedMaterial: {fileID: 9024649423926858605, guid: 0bc1de604b91fb1f4bc8d2beeefe2c74, type: 2}
@@ -39147,8 +39238,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294637301
-  m_fontColor: {r: 0.9607843, g: 0.9647059, b: 0.98039216, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -39201,7 +39292,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 4.6820755, w: 0}
+  m_margin: {x: 0, y: 0, z: 178.2278, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -39599,9 +39690,9 @@ Transform:
   - {fileID: 102643334}
   - {fileID: 1697096804}
   - {fileID: 1264787935}
-  - {fileID: 687532320}
   - {fileID: 502927193}
   - {fileID: 1854651660}
+  - {fileID: 687532320}
   m_Father: {fileID: 603509308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41820,7 +41911,7 @@ Transform:
   m_Children:
   - {fileID: 1104233319}
   m_Father: {fileID: 1199971226}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &1564239733
 BoxCollider:
@@ -44500,7 +44591,7 @@ GameObject:
   - component: {fileID: 1697096806}
   - component: {fileID: 1697096805}
   m_Layer: 0
-  m_Name: TestHouse (1)
+  m_Name: BirdReservoirPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44533,10 +44624,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerActive: 0
-  teleportLocation: {fileID: 721340028}
+  teleportLocation: {fileID: 157311480}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1715440010}
 --- !u!65 &1697096806
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49312,7 +49403,7 @@ GameObject:
   - component: {fileID: 1854651662}
   - component: {fileID: 1854651661}
   m_Layer: 0
-  m_Name: TestHouse (5)
+  m_Name: PostOfficePad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49330,7 +49421,7 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.20000002, z: 0}
   m_Children: []
   m_Father: {fileID: 1471612691}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1854651661
 MonoBehaviour:
@@ -49345,7 +49436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerActive: 0
-  teleportLocation: {fileID: 721340028}
+  teleportLocation: {fileID: 1288003525}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
   gameController: {fileID: 1715440010}
