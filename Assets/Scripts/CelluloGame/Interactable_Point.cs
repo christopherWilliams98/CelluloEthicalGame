@@ -87,6 +87,7 @@ public class Interactable_Point : MonoBehaviour
         {
             GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = "";
             triggerActive = false;
+            reset_leds();
 
         }
     }
@@ -145,10 +146,13 @@ public class Interactable_Point : MonoBehaviour
         // Make one Cellulo LED green and one red.
         public void makeOneGreenOneRed()
     {
-        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(255,0,266,0), 255);
         GameObject _leds = agent.transform.Find("Leds").gameObject;
         _leds.transform.GetChild(1).gameObject.GetComponent<Renderer>().materials[0].color = Color.green;
         _leds.transform.GetChild(2).gameObject.GetComponent<Renderer>().materials[0].color = Color.red;
+    }
+        public void reset_leds()
+    {
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(255,0,266,255), 255);
 
     }
 

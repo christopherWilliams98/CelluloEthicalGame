@@ -2712,7 +2712,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 721340028}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!1 &103649639
 GameObject:
@@ -4893,7 +4893,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 182043822}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!65 &173601565
 BoxCollider:
@@ -12288,7 +12288,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 548110492}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!65 &502927195
 BoxCollider:
@@ -33797,7 +33797,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 1564239731}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!65 &1264787937
 BoxCollider:
@@ -44785,7 +44785,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 157311480}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!65 &1697096806
 BoxCollider:
@@ -49515,7 +49515,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 1288003525}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!65 &1854651662
 BoxCollider:
@@ -50147,7 +50147,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 0}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
-  agent: {fileID: 0}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!1 &1889052111
 GameObject:
