@@ -7,6 +7,8 @@ public class MainCelluloController : MonoBehaviour
     public bool wantsInteraction = false;
     private bool playerMenuEnabled = true;
 
+    public CelluloAgent agent;
+
     public GameObject statMenu;
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,11 @@ public class MainCelluloController : MonoBehaviour
         }
     }
 
-
     // Disable stat menu when interacting with pads
     public void OnTriggerEnter(Collider other)
     {
         playerMenuEnabled = false;
+        makeOneGreenOneRed();
     }
 
     // Enable stat menu when leaving pads
@@ -46,4 +48,15 @@ public class MainCelluloController : MonoBehaviour
             statMenu.SetActive(true);
         }
     }
+
+    // Make one Cellulo LED green and one red.
+    public void makeOneGreenOneRed()
+    {  
+        /*
+         GameObject _leds = agent.transform.Find("Leds").gameObject;
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstSingle, Color.green, 255);
+        _leds.transform.GetChild(i).gameObject.GetComponent<Renderer>().materials[0].color = color;
+*/
+    }
+
 }
