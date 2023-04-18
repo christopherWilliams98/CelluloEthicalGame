@@ -2712,6 +2712,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 721340028}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!1 &103649639
 GameObject:
@@ -4892,6 +4893,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 182043822}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!65 &173601565
 BoxCollider:
@@ -12286,6 +12288,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 548110492}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!65 &502927195
 BoxCollider:
@@ -21469,7 +21472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wantsInteraction: 0
-  agent: {fileID: 838800933}
   statMenu: {fileID: 1206294886}
 --- !u!1 &839287920
 GameObject:
@@ -33795,6 +33797,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 1564239731}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!65 &1264787937
 BoxCollider:
@@ -44782,6 +44785,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 157311480}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!65 &1697096806
 BoxCollider:
@@ -49511,6 +49515,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 1288003525}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!65 &1854651662
 BoxCollider:
@@ -50142,6 +50147,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 0}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 0}
   gameController: {fileID: 1715440010}
 --- !u!1 &1889052111
 GameObject:
@@ -50156,7 +50162,7 @@ GameObject:
   - component: {fileID: 1889052114}
   - component: {fileID: 1889052113}
   m_Layer: 0
-  m_Name: choice1
+  m_Name: bird_reservoir_choice_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50170,7 +50176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889052111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.121, y: 1.295, z: 0}
+  m_LocalPosition: {x: -0.052, y: 1.333, z: 0}
   m_LocalScale: {x: 0.06896552, y: 0.068965524, z: 0}
   m_Children: []
   m_Father: {fileID: 157311481}
@@ -50192,6 +50198,7 @@ MonoBehaviour:
   teleportLocation: {fileID: 157311480}
   allPads: {fileID: 1471612690}
   returnPad: {fileID: 1882654569}
+  agent: {fileID: 838800933}
   gameController: {fileID: 1715440010}
 --- !u!65 &1889052114
 BoxCollider:

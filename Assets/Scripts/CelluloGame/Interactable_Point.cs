@@ -17,6 +17,8 @@ public class Interactable_Point : MonoBehaviour
     public GameObject allPads;
     public GameObject returnPad;
 
+    public CelluloAgent agent;
+
     public CelluloGameController gameController;
 
 
@@ -68,10 +70,13 @@ public class Interactable_Point : MonoBehaviour
                     textBox.text = "Return to main map";
                     break;
 
-                
+                case "bird_reservoir_choice_1":
+                    textBox.text = "Insert Choice 1: Press green to Accept, red to decline the decision";
+                    makeOneGreenOneRed();
+                    break;
             }
 
-            
+
         }
     }
 
@@ -82,6 +87,7 @@ public class Interactable_Point : MonoBehaviour
         {
             GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = "";
             triggerActive = false;
+
         }
     }
 
@@ -134,6 +140,16 @@ public class Interactable_Point : MonoBehaviour
             allPads.SetActive(false);
         }
         
+    }
+
+        // Make one Cellulo LED green and one red.
+        public void makeOneGreenOneRed()
+    {
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(255,0,266,0), 255);
+        GameObject _leds = agent.transform.Find("Leds").gameObject;
+        _leds.transform.GetChild(1).gameObject.GetComponent<Renderer>().materials[0].color = Color.green;
+        _leds.transform.GetChild(2).gameObject.GetComponent<Renderer>().materials[0].color = Color.red;
+
     }
 
 
