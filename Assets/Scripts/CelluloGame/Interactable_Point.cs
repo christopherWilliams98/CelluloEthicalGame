@@ -91,7 +91,8 @@ public class Interactable_Point : MonoBehaviour
         Debug.Log("Talking with " + gameObject.name + "");
 
         gameController.enableDialogueBox(true);
-        gameController.lockInChoice();
+
+
 
         triggerActive = false;
         RectTransform droneImage = GameObject.Find("DroneImage").GetComponent<RectTransform>();
@@ -119,6 +120,9 @@ public class Interactable_Point : MonoBehaviour
             // Enter the desired house
             teleportLocation.SetActive(true);
 
+            if(this.gameObject.transform.parent.name == "HousePads"){
+                gameController.lockInChoice();
+            }
             // Move drone image to the desired house
             droneImage.anchoredPosition3D = new Vector3(60f, 240f, 0);
             droneImage.sizeDelta = new Vector2(40,40);
