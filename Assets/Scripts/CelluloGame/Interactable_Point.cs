@@ -21,6 +21,8 @@ public class Interactable_Point : MonoBehaviour
 
     public CelluloGameController gameController;
 
+    private string temp;
+
 
     
     
@@ -41,6 +43,7 @@ public class Interactable_Point : MonoBehaviour
         {
             triggerActive = true;
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
+            temp = textBox.text;
             switch(this.gameObject.name){
                 case "CityParkPad":
                     textBox.text = "Test drone in city park \n" + "COST: 0.5 weeks";
@@ -76,7 +79,6 @@ public class Interactable_Point : MonoBehaviour
                     break;
             }
 
-
         }
     }
 
@@ -85,7 +87,7 @@ public class Interactable_Point : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = "";
+            GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
             triggerActive = false;
             reset_leds();
 
