@@ -5,6 +5,8 @@ using TMPro;
 using System.Text;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using System.Timers;
 
 //Blake Hill
 public enum choices
@@ -136,21 +138,42 @@ public class CelluloGameController : MonoBehaviour
         }
     }
     
+    Dictionary<string, int> locations = new Dictionary<string, int>(){
+        {"None", 0},
+        {"Tech Shop", 1},
+        {"City Hall", 2},
+        {"City Park", 3},
+        {"Farm", 4},
+        {"Bird Reservoir", 6}, // MERGED WITH BIRD EXPERT
+        {"Post Office", 7},
+    };
     
+    private int findChoiceId(){
+        GameObject allMaps = GameObject.Find("HouseMaps");
+        foreach(Transform child in allMaps.transform){
+            if(child.gameObject.activeSelf)
+            {
+                return locations[child.gameObject.name];
+            }
+        }
+        return 0;
+    }
+
     /**
     Manages what happens any time a user locks in a choice.
     This is triggered any time a user locks in a choice by placing their cellulo on the accept pad
     */
     public void lockInChoice() {
+
         Debug.Log("Entering lockInChoice");
         acceptedSubChoiceNumber = 0; //reset subChoice index
         //DragDrop lastChoice = slot.droppedChoice;
-
-        latestChoiceId = 6; // TODO REMOVE THIS LATER
-
+        
+        //System.Threading.Thread.Sleep(1000);
+        int latestChoiceId = findChoiceId();
+        Debug.Log("latestChoiceId: " + latestChoiceId);
         //latestChoiceId = lastChoice.choice_id;
         //string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
-        string choiceCardText = "hello";
         //reset choice card to its original location
         //lastChoice.transform.position = lastChoice.original_position;
 
@@ -163,7 +186,7 @@ public class CelluloGameController : MonoBehaviour
             
             locked_choices.Add(latestChoiceId); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
 
-            tabController.spawnTab(latestChoiceId, choiceCardText, choiceFeedbackDialogues[latestChoiceId]);
+            //tabController.spawnTab(latestChoiceId, choiceCardText, choiceFeedbackDialogues[latestChoiceId]);
             //Main Tab always displayed the to the right of all other tabs
             //mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
         

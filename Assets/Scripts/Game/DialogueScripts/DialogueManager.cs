@@ -13,7 +13,6 @@ public class DialogueManager : MonoBehaviour
     public CelluloGameController gameController; //Needed to notify gameController that drone rangesAndBalance can be updated based on choice to accept or refuse.
     //Alternatively choice could just notify gameController.acceptRefuseChoiceMade();
     private TextMeshProUGUI dialogueText;
-    public bool isMainTabText = false;
     private int currentSentence = 0;
     public bool finishedDialogue = false;
     private Queue<string> sentences; //Load sentences as read through dialog
@@ -30,11 +29,9 @@ public class DialogueManager : MonoBehaviour
     /**
     Setup dialogue sentences and dialogue box and begin by displaying first sentence.
     */
-    public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox, bool isMainTabTextBox){
-        isMainTabText = isMainTabTextBox; //if in main tab then will want to spawn buttons else no
+    public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox){
         //Debug.Log("Starting dialogue :" + dialogue.name);
         //nameText.text = dialogue.name;
-        continueButton.gameObject.SetActive(true);
         finishedDialogue = false;
         sentences.Clear(); //clear previous 
         dialogueText = dialogueTextBox;
@@ -51,24 +48,12 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence() {
         //reach end of queue
         if(sentences.Count == 0) {
-            EndDialogue();
             finishedDialogue = true;
             return;
         } 
         
         //Can only display next sentence if finished typing out the previous sentence
         if(waitTillFinishTyping == false) {
-            UnspawnRefuseAcceptButtons();//Remove old refuse/accept buttons if they are still there
-            continueButton.gameObject.SetActive(false);
-            //If have reached the the texts with possible subchoices and we are in the mainTabText
-            //Then spawn accept and refuse buttons to make the subChoices
-            if(isMainTabText && sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1) {
-                if(sentences.Count != 0 && sentences.Count != 1) //last sentence is "Please select next choice"(so dont want to spawn buttons here)
-                    spawnRefuseAcceptButtons();
-            }
-            if(SceneManager.GetActiveScene().name == "EndingScene" && sentences.Count == 1) {
-                replayButton.gameObject.SetActive(true);
-            }
             if(SceneManager.GetActiveScene().name == "EndingScene") {
                 gameController.updateScientistImage();
             }
@@ -87,27 +72,11 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.005f);
         }
-      
-        if(acceptRefuseButtonsAreDisplayed == false){
-            continueButton.gameObject.SetActive(true); //show continue button when finished typing
-        } 
-        
-        if(SceneManager.GetActiveScene().name != "MissionStatement" && sentences.Count == 0){
-            continueButton.gameObject.SetActive(false);
-        }
         waitTillFinishTyping = false;
-    }
-
-    void EndDialogue() {
-        continueButton.gameObject.SetActive(false);
-        Debug.Log("End of conversation");
     }
 
     void spawnRefuseAcceptButtons(){
         acceptRefuseButtonsAreDisplayed = true;
-        refuseButton.gameObject.SetActive(true);
-        acceptButton.gameObject.SetActive(true);
-        continueButton.gameObject.SetActive(false);
     }
 
     void UnspawnRefuseAcceptButtons() {
@@ -138,14 +107,6 @@ public class DialogueManager : MonoBehaviour
     public void refuseChanges() {
         //Wait till finish typing before activating the button
         if(waitTillFinishTyping == false) {
-            refuseButton.gameObject.SetActive(false);
-            acceptButton.gameObject.SetActive(false);
-            if(sentences.Count > 0){
-                continueButton.onClick.Invoke();
-                if(acceptRefuseButtonsAreDisplayed == false && sentences.Count > 0){
-                    continueButton.gameObject.SetActive(true);
-                }
-            }
             gameController.incrementSubChoiceNum();//increment the index indicating what sub choice we are on
         }   
     }
