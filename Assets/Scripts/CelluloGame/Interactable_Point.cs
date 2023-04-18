@@ -71,7 +71,7 @@ public class Interactable_Point : MonoBehaviour
                     break;
 
                 case "bird_reservoir_choice_1":
-                    textBox.text = "Insert Choice 1: Press green to Accept, red to decline the decision";
+                    textBox.text = "Make drone goodn't? 1: Press green to Accept, red to decline the decision";
                     makeOneGreenOneRed();
                     break;
             }
