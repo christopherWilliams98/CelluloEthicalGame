@@ -27,14 +27,15 @@ public class Interactable_Point : MonoBehaviour
     
     private void Update()
     {
+            int choice = checkButtonPressed();
         // Check if player wants to interact with the pad
-        if(triggerActive && (Input.GetKeyDown(KeyCode.Space)))
+        if(triggerActive && (Input.GetKeyDown(KeyCode.Space)) || choice != -1)
         {
             Interact();
             
         }
         if(triggerActive && isMakingChoice){
-            int choice = checkButtonPressed();
+
             if(choice == 1 || Input.GetKeyDown(KeyCode.F)){
                 // Accept
                 Debug.Log("Accepted");  
