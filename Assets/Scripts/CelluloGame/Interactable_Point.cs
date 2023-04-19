@@ -42,6 +42,7 @@ public class Interactable_Point : MonoBehaviour
             else if (choice == 2 || Input.GetKeyDown(KeyCode.G)){
                 // Decline
                 Debug.Log("Declined");
+                
             }
             else {
                 // Do nothing
@@ -141,7 +142,7 @@ public class Interactable_Point : MonoBehaviour
         }
         else
         {
-            // Enter the desired location
+            // Enter the desired house
             teleportLocation.SetActive(true);
 
             if(this.gameObject.transform.parent.name == "HousePads"){
