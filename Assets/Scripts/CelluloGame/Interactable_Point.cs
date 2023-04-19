@@ -16,24 +16,31 @@ public class Interactable_Point : MonoBehaviour
     public GameObject teleportLocation;
     public GameObject allPads;
     public GameObject returnPad;
-
     public CelluloAgent agent;
-
     public CelluloGameController gameController;
-
     private string temp;
-
     private bool isMakingChoice;
-    
+    int choice = -1;
+    private int cooldown = 300;
+ 
     private void Update()
     {
-            int choice = checkButtonPressed();
+        
+        // The cooldown makes it such that the player can't spam the button.
+        if (cooldown < 300){
+            cooldown ++;
+        }
+
+        choice = checkButtonPressed();
+
         // Check if player wants to interact with the pad
-        if(triggerActive && (Input.GetKeyDown(KeyCode.Space)) || choice != -1)
+        if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || (choice != -1 && cooldown == 300)))
         {
             Interact();
+            cooldown = 0;
             
         }
+
         if(triggerActive && isMakingChoice){
 
             if(choice == 1 || Input.GetKeyDown(KeyCode.F)){
