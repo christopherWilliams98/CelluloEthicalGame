@@ -16,13 +16,18 @@ public class Interactable_Point : MonoBehaviour
     public GameObject teleportLocation;
     public GameObject allPads;
     public GameObject returnPad;
-    public CelluloAgent agent;
+
+    public MainCelluloController celluloController;
     public CelluloGameController gameController;
     private string temp;
     private bool isMakingChoice;
     int choice = -1;
     private int cooldown = 300;
  
+    void Start()
+    {
+
+    }
     private void Update()
     {
         
@@ -31,7 +36,7 @@ public class Interactable_Point : MonoBehaviour
             cooldown ++;
         }
 
-        choice = checkButtonPressed();
+        choice = celluloController.checkButtonPressed();
 
         // Check if player wants to interact with the pad
         if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || (choice != -1 && cooldown == 300)))
@@ -95,10 +100,12 @@ public class Interactable_Point : MonoBehaviour
                     textBox.text = "Return back to city";
                     break;
 
-                case "bird_reservoir_choice_1":
-                    textBox.text = "decision 1: Press green to Accept, red to decline the decision";
-                    makeOneGreenOneRed();
-                    isMakingChoice = true;
+                default:
+                    if(this.gameObject.transform.parent.name == "ChoicePads"){
+                        textBox.text = "decision 1: Press green to Accept, red to decline the decision";
+                        celluloController.makeOneGreenOneRed();
+                        isMakingChoice = true;
+                    }
                     break;
             }
 
@@ -113,7 +120,7 @@ public class Interactable_Point : MonoBehaviour
             GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
             triggerActive = false;
             isMakingChoice = false;
-            reset_leds();
+            celluloController.reset_leds();
 
         }
     }
@@ -176,31 +183,8 @@ public class Interactable_Point : MonoBehaviour
         
     }
 
-    // Make one Cellulo LED green and one red.
-    public void makeOneGreenOneRed()
-    {
-        GameObject _leds = agent.transform.Find("Leds").gameObject;
-        _leds.transform.GetChild(1).gameObject.GetComponent<Renderer>().materials[0].color = Color.green;
-        _leds.transform.GetChild(2).gameObject.GetComponent<Renderer>().materials[0].color = Color.red;
-    }
-    //resets all leds to purple
-    public void reset_leds()
-    {
-        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(255,0,266,255), 255);
-    }
+   
 
-    // Check if the player is pressing a Cellulo led button
-    int checkButtonPressed(){
-        Cellulo robot = agent._celluloRobot;
-        if(robot == null){
-            return -1;
-        }
 
-        for(int i = 0; i < 6; i++){
-            if(robot.TouchKeys[i] == Touch.LongTouch){
-                return i;
-            }
-        }
-        return -1;
-    }
+    
 }

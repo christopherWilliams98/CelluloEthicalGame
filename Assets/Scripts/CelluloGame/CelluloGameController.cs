@@ -167,15 +167,10 @@ public class CelluloGameController : MonoBehaviour
 
         Debug.Log("Entering lockInChoice");
         acceptedSubChoiceNumber = 0; //reset subChoice index
-        //DragDrop lastChoice = slot.droppedChoice;
-        
-        //System.Threading.Thread.Sleep(1000);
+
         int latestChoiceId = findChoiceId();
         Debug.Log("latestChoiceId: " + latestChoiceId);
-        //latestChoiceId = lastChoice.choice_id;
-        //string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
-        //reset choice card to its original location
-        //lastChoice.transform.position = lastChoice.original_position;
+
 
         //Get cost of choice and check if have avaible funds
         float mainChoiceTimeCost = mainChoiceTimeCosts[latestChoiceId];
@@ -185,13 +180,10 @@ public class CelluloGameController : MonoBehaviour
         if(checkIfEnoughResources(mainChoiceTimeCost, mainChoiceFinancialCost)){
             
             locked_choices.Add(latestChoiceId); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
-
-            //tabController.spawnTab(latestChoiceId, choiceCardText, choiceFeedbackDialogues[latestChoiceId]);
-            //Main Tab always displayed the to the right of all other tabs
-            //mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
         
             //Update game paramaters and UI
             updateMainTabText(choiceFeedbackDialogues[latestChoiceId]); //update text in main tab
+            //updateMainTabName(choiceFeedbackDialogues[latestChoiceId])
             EnterButton.TriggerDialogueMainTab(); //trigger dialogue in MainTab
 
             //update available time and balance due to locking in this main choice
