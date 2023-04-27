@@ -73,7 +73,6 @@ public class CelluloGameController : MonoBehaviour
     //public DialogueManager dialogueManager;
     public PopUpScript popUp;
     public Button mainTab;
-    private int mainTabIndexInLayout; //Used to make sure the "main" tab is always to the right of all tabs
     public TabController tabController;
     //Array of dialogues 
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
@@ -114,7 +113,6 @@ public class CelluloGameController : MonoBehaviour
             finalDialogueTriggerButton.allowRestart = false;
         }
       
-        mainTabIndexInLayout = 1; 
         //Print balance and drone specs 
         if(SceneManager.GetActiveScene().name == "DroneGameCellulo") {
             remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
@@ -140,12 +138,12 @@ public class CelluloGameController : MonoBehaviour
     
     Dictionary<string, int> locations = new Dictionary<string, int>(){
         {"None", 0},
-        {"Tech Shop", 1},
-        {"City Hall", 2},
-        {"City Park", 3},
+        {"TechShop", 1},
+        {"CityHall", 2},
+        {"CityPark", 3},
         {"Farm", 4},
-        {"Bird Reservoir", 6}, // MERGED WITH BIRD EXPERT
-        {"Post Office", 7},
+        {"BirdReservoir", 6}, // MERGED WITH BIRD EXPERT
+        {"PostOffice", 7},
     };
     
     private int findChoiceId(){
@@ -189,7 +187,7 @@ public class CelluloGameController : MonoBehaviour
             //update available time and balance due to locking in this main choice
             updateAvailableBalanceAndTimeForMainChoice(latestChoiceId);
         } else {
-            popUp.display();
+            dialogueTextBox.text = "Not enough time left!";
         }
         //Check if game ended, then activate final scene.
         if(latestChoiceId == (int)choices.shipIt){
@@ -208,7 +206,7 @@ public class CelluloGameController : MonoBehaviour
     /// Input: cost of currently selected subchoice
     /// Output: Boolean indicating if have enough resources
     ///
-    private bool checkIfEnoughResources(float timeCost, int financialCost){
+    public bool checkIfEnoughResources(float timeCost, int financialCost){
         //if not enough resources return false
         if(availableBalance < financialCost || remainingTime < timeCost){
             return false;

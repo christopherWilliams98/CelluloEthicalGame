@@ -17,12 +17,11 @@ public class Interactable_Point : MonoBehaviour
     public GameObject allPads;
     public GameObject returnPad;
 
+    public GameObject choicePads;
     public MainCelluloController celluloController;
     public CelluloGameController gameController;
     private string temp;
-    private bool isMakingChoice;
-    int choice = -1;
-    private int cooldown = 300;
+   
  
     void Start()
     {
@@ -30,38 +29,12 @@ public class Interactable_Point : MonoBehaviour
     }
     private void Update()
     {
-        
-        // The cooldown makes it such that the player can't spam the button.
-        if (cooldown < 300){
-            cooldown ++;
-        }
-
-        choice = celluloController.checkButtonPressed();
-
         // Check if player wants to interact with the pad
-        if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || (choice != -1 && cooldown == 300)))
+        if(triggerActive && (Input.GetKeyDown(KeyCode.Space)))
         {
             Interact();
-            cooldown = 0;
-            
         }
-
-        if(triggerActive && isMakingChoice){
-
-            if(choice == 1 || Input.GetKeyDown(KeyCode.F)){
-                // Accept
-                Debug.Log("Accepted");  
-            }
-            else if (choice == 2 || Input.GetKeyDown(KeyCode.G)){
-                // Decline
-                Debug.Log("Declined");
-                
-            }
-            else {
-                // Do nothing
-            }
     }
-}
 
     // Activate pad interaction when a player enters its range
     public void OnTriggerEnter(Collider other)
@@ -101,11 +74,13 @@ public class Interactable_Point : MonoBehaviour
                     break;
 
                 default:
+                /*
                     if(this.gameObject.transform.parent.name == "ChoicePads"){
                         textBox.text = "decision 1: Press green to Accept, red to decline the decision";
                         celluloController.makeOneGreenOneRed();
                         isMakingChoice = true;
                     }
+                */
                     break;
             }
 
@@ -119,7 +94,6 @@ public class Interactable_Point : MonoBehaviour
         {
             GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
             triggerActive = false;
-            isMakingChoice = false;
             celluloController.reset_leds();
 
         }
@@ -132,17 +106,21 @@ public class Interactable_Point : MonoBehaviour
 
         gameController.enableDialogueBox(true);
 
-
-
         triggerActive = false;
         RectTransform droneImage = GameObject.Find("DroneImage").GetComponent<RectTransform>();
 
         if(this.gameObject.name == "ReturnPad")
         {
-            // Enable all other house pads
-            allPads.SetActive(true);
-            // Disable the return pad
-            returnPad.SetActive(false);
+            // Enable all other house pads, disable return pad and choice pads
+            if(allPads!=null && returnPad != null && choicePads != null){
+                allPads.SetActive(true);
+                choicePads.SetActive(false);
+                returnPad.SetActive(false);
+            }
+            else{
+                Debug.Log("allPads or returnPad is null");
+            }
+          
 
 
             // Move drone image back to the main map
@@ -154,6 +132,9 @@ public class Interactable_Point : MonoBehaviour
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
             textBox.text = "";
 
+
+
+            
             foreach(Transform house in GameObject.Find("HouseMaps").transform)
             {
                 if(house.gameObject.activeSelf == true){
@@ -163,8 +144,11 @@ public class Interactable_Point : MonoBehaviour
         }
         else
         {
-            // Enter the desired house
-            teleportLocation.SetActive(true);
+            // Enter the desired house 
+            if(teleportLocation != null){
+                teleportLocation.SetActive(true);
+            }
+            
 
             if(this.gameObject.transform.parent.name == "HousePads"){
                 gameController.lockInChoice();
@@ -174,11 +158,16 @@ public class Interactable_Point : MonoBehaviour
             //droneImage.anchoredPosition3D = new Vector3(60f, 240f, 0);
             //droneImage.sizeDelta = new Vector2(40,40);
 
-            // Enable the return pad
-            returnPad.SetActive(true);
+            // Disable all other house pads 
+            // Enable the return pad and choice pads
+            if(allPads != null && returnPad != null && choicePads != null){
+                allPads.SetActive(false);
+                returnPad.SetActive(true);
+                Debug.Log(teleportLocation.name);
+                choicePads.SetActive(true);
 
-            // Disable all other house pads
-            allPads.SetActive(false);
+            }
+            
         }
         
     }
