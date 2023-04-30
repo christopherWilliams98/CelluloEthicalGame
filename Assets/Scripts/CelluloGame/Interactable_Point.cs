@@ -44,35 +44,41 @@ public class Interactable_Point : MonoBehaviour
             triggerActive = true;
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
             temp = textBox.text;
+            celluloController.set_leds_white();
             switch(this.gameObject.name){
-                case "CityParkPad":
-                    textBox.text = "Test drone in city park \n" + "COST: 0.5 weeks";
-                    break;
-                
-                case "TechShopPad":
-                    textBox.text = "Consult drone expert \n" + "COST: 0.5 weeks";
-                    break;
-
-                case "CityHallPad":
-                    textBox.text = "Consult local council \n" + "COST: X weeks";
-                    break;
-
-                case "BirdReservoirPad":
-                    textBox.text = "Consult bird reservoir director \n" + "COST: 1 week";
-                    break;
-
-                case "PostOfficePad":
-                    textBox.text = "Ship finished product";
-                    break;
-
-                case "FarmPad":
-                    textBox.text = "Test drone on external location \n" + "COST: 1 week";
-                    break;
 
                 case "ReturnPad":
                     textBox.text = "Return back to city";
                     break;
 
+                case "TechShopPad":
+                    textBox.text = "Consult drone expert \n\n" + "COST: 0.5 weeks";
+                    break;
+                    
+                case "OrnithologistPad":
+                    textBox.text = "Consult ornithologist \n\n" + "COST: 0.5 weeks";
+                    break;
+
+                case "CityParkPad":
+                    textBox.text = "Test drone in city park \n\n" + "COST: 0.5 weeks";
+                    break;
+                
+                case "FarmPad":
+                    textBox.text = "Test drone on external location \n\n" + "COST: 1 week";
+                    break;
+
+                case "CityHallPad":
+                    textBox.text = "Consult local council \n\n" + "COST: X weeks";
+                    break;
+
+                case "BirdReservoirPad":
+                    textBox.text = "Consult bird reservoir director \n\n" + "COST: 1 week";
+                    break;
+
+                case "PostOfficePad":
+                    textBox.text = "Ship finished product";
+                    break;
+                
                 default:
                 /*
                     if(this.gameObject.transform.parent.name == "ChoicePads"){
@@ -108,17 +114,21 @@ public class Interactable_Point : MonoBehaviour
 
         triggerActive = false;
         RectTransform droneImage = GameObject.Find("DroneImage").GetComponent<RectTransform>();
-
+        celluloController.reset_leds();
         if(this.gameObject.name == "ReturnPad")
         {
             // Enable all other house pads, disable return pad and choice pads
-            if(allPads!=null && returnPad != null && choicePads != null){
+            if(allPads!=null){
                 allPads.SetActive(true);
-                choicePads.SetActive(false);
+            } 
+            if(returnPad != null){
                 returnPad.SetActive(false);
-            }
-            else{
-                Debug.Log("allPads or returnPad is null");
+                
+            } 
+            foreach(Transform choicePad in GameObject.Find("ChoicePads").transform){
+                if(choicePad.gameObject.activeSelf == true){
+                    choicePad.gameObject.SetActive(false);
+                }
             }
           
 
@@ -131,8 +141,6 @@ public class Interactable_Point : MonoBehaviour
             // Clear the dialogue box
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
             textBox.text = "";
-
-
 
             
             foreach(Transform house in GameObject.Find("HouseMaps").transform)
@@ -160,12 +168,14 @@ public class Interactable_Point : MonoBehaviour
 
             // Disable all other house pads 
             // Enable the return pad and choice pads
-            if(allPads != null && returnPad != null && choicePads != null){
+            if(allPads != null){
                 allPads.SetActive(false);
+            }
+            if(returnPad != null){
                 returnPad.SetActive(true);
-                Debug.Log(teleportLocation.name);
+            } 
+            if(choicePads != null){
                 choicePads.SetActive(true);
-
             }
             
         }

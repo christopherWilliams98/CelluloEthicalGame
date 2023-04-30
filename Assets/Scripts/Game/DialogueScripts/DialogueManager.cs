@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
     /**
     Display next sentence in queue
     */
-    public string DisplayNextSentence() {
+    public string DisplayNextSentence(int sentenceNum = 0) {
         //reach end of queue
         if(sentences.Count == 0) {
             finishedDialogue = true;
@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         } 
         Debug.Log("DisplayNextSentence() called");
 
-        string sentence = sentences[0];
+        string sentence = sentences[sentenceNum];
         //Can only display next sentence if finished typing out the previous sentence
         if(waitTillFinishTyping == false) {
             if(SceneManager.GetActiveScene().name == "EndingScene") {
@@ -61,7 +61,6 @@ public class DialogueManager : MonoBehaviour
             }
             
             waitTillFinishTyping = true;
-            sentences.RemoveAt(0);
             //StopAllCoroutines();//Stop if click continue before last coroutine ended
             StartCoroutine(TypeSentence(sentence));
         }
@@ -79,19 +78,9 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    public void acceptChanges(){
-        //Wait till finish typing before activating the button
-        if(waitTillFinishTyping == false) {
-            refuseButton.gameObject.SetActive(false);
-            acceptButton.gameObject.SetActive(false);
-            if(sentences.Count > 0){
-                continueButton.onClick.Invoke(); //move to next sentence
-                //No need to make continueButton visible again.
-            }
-            gameController.updateDroneRangesAndResources();  //update display of drone Ranges and balance
-            gameController.incrementSubChoiceNum(); //increment the index indicating what sub choice we are on
-        }
-            
+    public void acceptChanges(int acceptedSubChoiceNumber){
+        gameController.updateDroneRangesAndResources(acceptedSubChoiceNumber);  //update display of drone Ranges and balance
+        gameController.incrementSubChoiceNum(); //increment the index indicating what sub choice we are on
     }
 
     public void refuseChanges() {

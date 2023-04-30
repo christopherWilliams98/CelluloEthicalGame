@@ -8,10 +8,7 @@ public class MainCelluloController : MonoBehaviour
     public bool wantsInteraction = false;
     private bool playerMenuEnabled = true;
 
-
     public GameObject statMenu;
-
-    private GameObject currentCollider = null;
 
     // Start is called before the first frame update
     void Start()
@@ -25,29 +22,17 @@ public class MainCelluloController : MonoBehaviour
         // Check if player wants to access the stat menu
         if(playerMenuEnabled && (Input.GetKeyDown(KeyCode.Space)))
         {
-            display_menu();
+           // display_menu();
         }
         
-        // Fix the stat menu bug when return pads disappear and do not trigger OnTriggerExit
-        if(!playerMenuEnabled){
-            if(currentCollider == null){
-                playerMenuEnabled = true;
-            }
-        }
     }
 
-    // Disable stat menu when interacting with pads
-    void OnTriggerEnter(Collider other)
-    {
-        playerMenuEnabled = false;
-        currentCollider = other.gameObject;
+
+    // Toggle the player menu
+    void TogglePlayerMenuEnabled(){
+        playerMenuEnabled = !playerMenuEnabled;
     }
 
-    // Enable stat menu when leaving pads
-    void OnTriggerExit(Collider other)
-    {
-        playerMenuEnabled = true;
-    }
 
     // Display or hide the stat menu
     private void display_menu(){
@@ -61,7 +46,7 @@ public class MainCelluloController : MonoBehaviour
 
 
      // Make one Cellulo LED green and one red.
-    public void makeOneGreenOneRed()
+    public void applyChoiceSelectionColors()
     {
         GameObject _leds = agent.transform.Find("Leds").gameObject;
         _leds.transform.GetChild(0).gameObject.GetComponent<Renderer>().materials[0].color = new Color(1.0f, 194f/255f, 10f/255f, 1f);
@@ -72,6 +57,12 @@ public class MainCelluloController : MonoBehaviour
     public void reset_leds()
     {
         agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(1.0f,0f,1.0f,1f), 255);
+    }
+
+    // Sets LEDs to white
+    public void set_leds_white()
+    {
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(1.0f,1.0f,1.0f,1f), 255);
     }
 
     // Check if the player is pressing a Cellulo led button
