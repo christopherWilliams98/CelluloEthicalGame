@@ -13,6 +13,8 @@ public class ChoicePoint : MonoBehaviour
     public int subchoiceNum;
     private int cooldown = 300;
     private bool hasBeenUsed = false;
+
+    public CelluloGameController gameController;
     
     int choice = -1;
 
@@ -21,7 +23,7 @@ public class ChoicePoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -57,6 +59,7 @@ public class ChoicePoint : MonoBehaviour
     // Activate the choice point when a player enters its range
     void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             if(this.name != "DialoguePad" && !hasBeenUsed){
@@ -72,8 +75,11 @@ public class ChoicePoint : MonoBehaviour
 
             // Change the dialogue text to the choice text~
             if(choiceText == ""){
+
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
                 choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
+                Debug.Log("choiceText: " + choiceText);
+                
             }else{
                 textBox.text = choiceText;
             }

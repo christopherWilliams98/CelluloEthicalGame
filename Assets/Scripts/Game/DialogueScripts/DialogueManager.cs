@@ -47,11 +47,12 @@ public class DialogueManager : MonoBehaviour
     */
     public string DisplayNextSentence(int sentenceNum = 0) {
         //reach end of queue
+        Debug.Log("DisplayNextSentence() called");
+
         if(sentences.Count == 0) {
             finishedDialogue = true;
             return "";
         } 
-        Debug.Log("DisplayNextSentence() called");
 
         string sentence = sentences[sentenceNum];
         //Can only display next sentence if finished typing out the previous sentence

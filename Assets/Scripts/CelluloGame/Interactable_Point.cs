@@ -23,9 +23,13 @@ public class Interactable_Point : MonoBehaviour
     private string temp;
     private int cooldown;
  
+    public bool isTutorial = false;
+    
     void Start()
     {
-
+        if(isTutorial){
+            gameController.lockInChoice();
+        }
     }
     private void Update()
     {
