@@ -11,6 +11,7 @@ using System.Timers;
 //Blake Hill
 public enum choices
 {
+    None, //0
 	DroneExpert, //1
     BirdExpert, //expert on specific bird (choice2)
     TestLocally, //test in backyard (choice id: 3)
