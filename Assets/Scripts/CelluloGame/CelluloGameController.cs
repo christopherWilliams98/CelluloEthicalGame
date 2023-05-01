@@ -11,7 +11,6 @@ using System.Timers;
 //Blake Hill
 public enum choices
 {
-	None, 
 	DroneExpert, //1
     BirdExpert, //expert on specific bird (choice2)
     TestLocally, //test in backyard (choice id: 3)
@@ -20,6 +19,7 @@ public enum choices
     userTesting, //choice id: 5
     resevoirDirector, //choice id: 6
     shipIt, //choice id: 7
+    Tutorial, //choice id: 8
 }
 
 public class CelluloGameController : MonoBehaviour
@@ -144,6 +144,7 @@ public class CelluloGameController : MonoBehaviour
         {"Farm", 4},
         {"BirdReservoir", 6}, // MERGED WITH BIRD EXPERT
         {"PostOffice", 7},
+        {"Tutorial", 8}
     };
     
     private int findChoiceId(){
@@ -222,7 +223,7 @@ public class CelluloGameController : MonoBehaviour
         //Debug.Log("Calls updateDronRanges");
         //Debug.Log(latestChoiceId);
         //TODO here check if availableBalance and RemaningTime is sufficient for this subchoice
-        //Once we know what choice was made, need to check if have enough funs before executing changes.
+        //Once we know what choice was made, need to check if have enough funds before executing changes.
         //If not enough DONT EXECUTE!! + inform user somehow that not enough funds!
 
         float timeCost= (float)0.0;

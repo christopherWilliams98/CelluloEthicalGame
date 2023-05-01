@@ -142,7 +142,7 @@ public class Interactable_Point : MonoBehaviour
                 }
             }
         }
-        else
+        
         {
             // Enter the desired house 
             if(teleportLocation != null){
