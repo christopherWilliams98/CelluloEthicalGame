@@ -31,19 +31,9 @@ public class ChoicePoint : MonoBehaviour
         if(hasBeenUsed){
             return;
         }
-         // The cooldown makes it such that the player can't spam the button.
-        if (cooldown < 300){
-            cooldown ++;
-        }
 
         choice = celluloController.checkButtonPressed();
 
-        if(choice != -1 && cooldown == 300)
-        {
-            // TODO: DO STH
-            cooldown = 0;
-            
-        }
         if(triggerActive && isMakingChoice){
             if(choice == 0 || Input.GetKeyDown(KeyCode.F)){
                 // Accept

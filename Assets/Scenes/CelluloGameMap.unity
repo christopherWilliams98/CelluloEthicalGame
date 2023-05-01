@@ -13521,7 +13521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518049752}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.71, y: 1.7647095, z: 0.41}
+  m_LocalPosition: {x: 0.71, y: 0, z: 0.41}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0}
   m_Children: []
   m_Father: {fileID: 2016891773}
@@ -13541,6 +13541,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerActive: 0
   choiceText: 
+  sentenceNum: 0
+  subchoiceNum: 0
   celluloController: {fileID: 838800936}
 --- !u!114 &518049755
 MonoBehaviour:
@@ -18936,7 +18938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &709883839
 Transform:
   m_ObjectHideFlags: 0
@@ -21830,7 +21832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820507398}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.71, y: 1.7647095, z: -2.89}
+  m_LocalPosition: {x: 0.71, y: 0, z: -2.89}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0}
   m_Children: []
   m_Father: {fileID: 2016891773}
@@ -21850,6 +21852,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerActive: 0
   choiceText: 
+  sentenceNum: 0
+  subchoiceNum: 0
   celluloController: {fileID: 838800936}
 --- !u!114 &820507401
 MonoBehaviour:
@@ -27969,7 +27973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1300460603369726367, guid: 6f5f6d7624c2ce5cc8896e584e30f1c5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300460603436986228, guid: 6f5f6d7624c2ce5cc8896e584e30f1c5, type: 3}
       propertyPath: m_LayoutPriority
@@ -34129,6 +34133,7 @@ Transform:
   - {fileID: 548110493}
   - {fileID: 182043823}
   - {fileID: 2029027253}
+  - {fileID: 1531254793}
   m_Father: {fileID: 550554555}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43028,7 +43033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1471612691
 Transform:
   m_ObjectHideFlags: 0
@@ -44510,7 +44515,7 @@ SpriteRenderer:
   m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1514786027
@@ -45020,7 +45025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1531254793
 Transform:
   m_ObjectHideFlags: 0
@@ -45029,15 +45034,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531254792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.839294, y: 0, z: -10.038023}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.3269043, y: 0, z: -5.187351}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 2016891773}
   - {fileID: 1340780191}
   - {fileID: 391021491}
   - {fileID: 1397723054}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1199971226}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1536226337
 GameObject:
@@ -49534,6 +49539,36 @@ MonoBehaviour:
       life, would you like to make your drone smaller and lighter? \n\nThis would
       cost you 50 CHF and 1 week in the lab.\n\n"
     - Please make your next choice, or lock in "Ship it!" to finalize your project.
+  - sentences:
+    - 'Greetings! I am your Tutorial Guide, Ami Kalidasa. Prepare yourself for an
+      enthralling journey! Before we begin, let me introduce you to some essential
+      concepts: Position your cellulo on the pad, you should see the LED lights turn
+      white. Hold down any of the LED lights to engage with the pad...'
+    - Fantastic! That was a Dialogue Pad, which enables you to proceed in a conversation.
+      There are various types of pads, like this Choice Pad! Set your cellulo on
+      it, and carefully consider the decision you need to make. Then, make your decision
+      by long pressing a specific LED light...
+    - "Decision: Do you wish to keep the cellulo LED lights pink or change them to
+      green ? To accept the change: long press the blue LED; to decline the change
+      and keep the lights pink: long press the orange LED\u2026 (This is a simple
+      cosmetic decision and will not affect the game)."
+    - Looks great! The next pad category is called a Movement Pad. Interacting with
+      this pad will trigger a scene transition. Go ahead and give it a try!
+    - We're heading to the project site in Dufftown, Scotland. Let's recap what your
+      thrilling mission entails. Your task is to design a drone specialized for monitoring
+      bird populations!
+    - You'll need to converse with the Dufftown locals to gather insights that will
+      aid in refining your design, ensuring it's well-suited for tracking bird populations...
+    - Here's your starting drone prototype, providing a foundation for your project.
+      Keep a close eye on it as you make your design decisions!
+    - This display shows your drone's current specifications, which will be updated
+      as you make design decisions.
+    - Exercise caution while making decisions, as both time and money are limited
+      resources. You can view your remaining time and budget right here...
+    - Opting to consult villagers will deplete time, and consenting to design modifications
+      will deplete both time and money!
+    - 'You''re now fully prepared to commence the project! To leave the bus or any
+      scene, simply interact with the Home Pad. Good luck! '
   - sentences:
     - 'Greetings! I am your Tutorial Guide, Ami Kalidasa. Prepare yourself for an
       enthralling journey! Before we begin, let me introduce you to some essential
