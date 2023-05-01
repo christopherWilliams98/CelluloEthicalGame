@@ -49,8 +49,9 @@ public class MainCelluloController : MonoBehaviour
     public void applyChoiceSelectionColors()
     {
         GameObject _leds = agent.transform.Find("Leds").gameObject;
-        _leds.transform.GetChild(0).gameObject.GetComponent<Renderer>().materials[0].color = new Color(1.0f, 194f/255f, 10f/255f, 1f);
-        _leds.transform.GetChild(3).gameObject.GetComponent<Renderer>().materials[0].color = new Color(12f/255f, 123f/255f, 220/255f, 1f);
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstSingle, new Color(12f/255f, 123f/255f, 220/255f, 1f), 0);
+        //_leds.transform.GetChild(0).gameObject.GetComponent<Renderer>().materials[0].color = new Color(1.0f, 194f/255f, 10f/255f, 1f);
+        //_leds.transform.GetChild(3).gameObject.GetComponent<Renderer>().materials[0].color = new Color(12f/255f, 123f/255f, 220/255f, 1f);
     }
 
     // Resets all leds to purple

@@ -45,7 +45,7 @@ public class ChoicePoint : MonoBehaviour
             
         }
         if(triggerActive && isMakingChoice){
-            if(choice == 1 || Input.GetKeyDown(KeyCode.F)){
+            if(choice == 0 || Input.GetKeyDown(KeyCode.F)){
                 // Accept
                 Debug.Log("Accepted");
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();

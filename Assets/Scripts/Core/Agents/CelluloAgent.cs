@@ -28,7 +28,7 @@ public class CelluloAgent : SteeringAgent
         AssignID();
         _leds = this.transform.Find("Leds").gameObject;
         SetVisualEffect(0, initialColor, 0);
-
+        MoveOnIce();
     }
 
 
@@ -223,7 +223,7 @@ public class CelluloAgent : SteeringAgent
     public void RealToUnity(){
         if (isConnected && _celluloRobot.pose.sqrMagnitude>0)
         {
-            transform.localPosition = new Vector3(Config.RealToUnityScaleInX(_celluloRobot.pose.x), 0, Config.RealToUnityScaleInY(_celluloRobot.pose.y));
+            transform.localPosition = new Vector3(Config.RealToUnityScaleInX(-_celluloRobot.pose.y + 1090), 0, Config.RealToUnityScaleInY(_celluloRobot.pose.x - 480));
             transform.localRotation = Quaternion.Euler(0, _celluloRobot.pose.z, 0);
         }
     }

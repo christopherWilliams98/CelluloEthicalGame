@@ -21,7 +21,7 @@ public class Interactable_Point : MonoBehaviour
     public MainCelluloController celluloController;
     public CelluloGameController gameController;
     private string temp;
-   
+    private int cooldown;
  
     void Start()
     {
@@ -29,8 +29,21 @@ public class Interactable_Point : MonoBehaviour
     }
     private void Update()
     {
+        if (cooldown < 300){
+            cooldown ++;
+        }
+
+        int choice = celluloController.checkButtonPressed();
+
+        if(choice != -1 && cooldown == 300)
+        {
+            // TODO: DO STH
+            cooldown = 0;
+            
+        }
+
         // Check if player wants to interact with the pad
-        if(triggerActive && (Input.GetKeyDown(KeyCode.Space)))
+        if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || choice != -1))
         {
             Interact();
         }
