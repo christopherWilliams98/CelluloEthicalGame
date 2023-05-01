@@ -139,10 +139,11 @@ public class CelluloGameController : MonoBehaviour
     Dictionary<string, int> locations = new Dictionary<string, int>(){
         {"None", 0},
         {"TechShop", 1},
-        {"CityHall", 2},
+        {"Ornithologist", 2},
         {"CityPark", 3},
         {"Farm", 4},
-        {"BirdReservoir", 6}, // MERGED WITH BIRD EXPERT
+        {"CityHall", 5},
+        {"BirdReservoir", 6},
         {"PostOffice", 7},
         {"Tutorial", 8}
     };
@@ -167,7 +168,7 @@ public class CelluloGameController : MonoBehaviour
         Debug.Log("Entering lockInChoice");
         acceptedSubChoiceNumber = 0; //reset subChoice index
 
-        int latestChoiceId = findChoiceId();
+        latestChoiceId = findChoiceId();
         Debug.Log("latestChoiceId: " + latestChoiceId);
 
 
@@ -191,9 +192,7 @@ public class CelluloGameController : MonoBehaviour
             dialogueTextBox.text = "Not enough time left!";
         }
         //Check if game ended, then activate final scene.
-        if(latestChoiceId == (int)choices.shipIt){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
-        }
+
     }
 
     /**
@@ -219,9 +218,10 @@ public class CelluloGameController : MonoBehaviour
     Updates drone ranges according to accepted subChoice
     Called whenever choice is accepted
     */
-    public void updateDroneRangesAndResources(){
-        //Debug.Log("Calls updateDronRanges");
-        //Debug.Log(latestChoiceId);
+    public void updateDroneRangesAndResources(int acceptedSubChoiceNumber){
+        Debug.Log("Calls updateDronRanges");
+        Debug.Log(latestChoiceId);
+        Debug.Log(acceptedSubChoiceNumber);
         //TODO here check if availableBalance and RemaningTime is sufficient for this subchoice
         //Once we know what choice was made, need to check if have enough funds before executing changes.
         //If not enough DONT EXECUTE!! + inform user somehow that not enough funds!
@@ -453,7 +453,7 @@ public class CelluloGameController : MonoBehaviour
     private void updateAvailableBalanceAndTimeForSubChoices(float timeCost, int financialCost) {
         remainingTime-= timeCost;
         availableBalance -= financialCost;
-        remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
+        remainingTimeText.text = "Time Left: " + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         
     }
