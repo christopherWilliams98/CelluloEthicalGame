@@ -80,7 +80,7 @@ public class Interactable_Point : MonoBehaviour
                     textBox.text = "Test drone in city park \n\n" + "COST: 0.5 weeks";
                     break;
                 
-                case "FarmPad":
+                case "ExternalLocationPad":
                     textBox.text = "Test drone on external location \n\n" + "COST: 1 week";
                     break;
 
@@ -139,6 +139,7 @@ public class Interactable_Point : MonoBehaviour
                 allPads.SetActive(true);
             } 
             if(returnPad != null){
+                Debug.Log("REMOVING RETURN PAD");
                 returnPad.SetActive(false);
                 
             } 
@@ -168,7 +169,7 @@ public class Interactable_Point : MonoBehaviour
             }
         }
         
-        {
+        else{
             // Enter the desired house 
             if(teleportLocation != null){
                 teleportLocation.SetActive(true);

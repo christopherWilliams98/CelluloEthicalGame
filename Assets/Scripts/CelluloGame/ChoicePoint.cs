@@ -13,12 +13,14 @@ public class ChoicePoint : MonoBehaviour
     public int subchoiceNum;
     private int cooldown = 300;
     private bool hasBeenUsed = false;
+    private bool hasBeenVisited = false;
 
     public CelluloGameController gameController;
     
     int choice = -1;
 
     public MainCelluloController celluloController;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +61,21 @@ public class ChoicePoint : MonoBehaviour
     // Activate the choice point when a player enters its range
     void OnTriggerEnter(Collider other)
     {
-
+  
         if (other.CompareTag("Player"))
         {
+            // When the point is visited, activate the next pad if it exists
+            if(!hasBeenVisited){
+                hasBeenVisited = true;
+                if(this.gameObject.transform.childCount != 0){
+                    Transform child = this.gameObject.transform.GetChild(0);
+                    if(child != null){
+                        child.gameObject.SetActive(true);
+                    }
+                }
+
+                
+            }
             if(this.name != "DialoguePad" && !hasBeenUsed){
                 // Light up the choice buttons
                 celluloController.applyChoiceSelectionColors();

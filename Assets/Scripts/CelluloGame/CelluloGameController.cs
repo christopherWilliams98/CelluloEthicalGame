@@ -142,7 +142,7 @@ public class CelluloGameController : MonoBehaviour
         {"TechShop", 1},
         {"Ornithologist", 2},
         {"CityPark", 3},
-        {"Farm", 4},
+        {"ExternalLocation", 4},
         {"CityHall", 5},
         {"BirdReservoir", 6},
         {"PostOffice", 7},
