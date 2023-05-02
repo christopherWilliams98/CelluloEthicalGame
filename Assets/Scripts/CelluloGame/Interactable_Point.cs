@@ -24,33 +24,91 @@ public class Interactable_Point : MonoBehaviour
     private int cooldown;
  
     public bool isTutorial = false;
+
+    public int sentenceNum;
+    public GameObject drone;
+    public GameObject stats;
+    public GameObject money;
+    public GameObject time;
     
+    private bool once = true;
     void Start()
     {
-        if(isTutorial){
-            gameController.lockInChoice();
-        }
+
     }
     private void Update()
     {
-        if (cooldown < 300){
-            cooldown ++;
+        if(isTutorial && once){
+            gameController.lockInChoice();
+            once = false;
         }
 
         int choice = celluloController.checkButtonPressed();
 
-        if(choice != -1 && cooldown == 300)
-        {
-            // TODO: DO STH
-            cooldown = 0;
-            
+        if(isTutorial && triggerActive){
+            tutorialHandler(choice);
+            return;
         }
+
 
         // Check if player wants to interact with the pad
         if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || choice != -1))
         {
             Interact();
         }
+    }
+    
+    
+    public void tutorialHandler(int choice){
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || choice != -1)
+        {
+            GameObject handPointer = GameObject.Find("HandPointer");
+            DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+            dialogueManager.DisplayNextSentence(sentenceNum);
+
+            switch(sentenceNum)
+            {
+                case 2:
+                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+                    this.transform.position = new Vector3(14.34f, 0.0f, -9.15f);
+                    break;
+                
+                case 3:
+                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+                    this.transform.position = new Vector3(18.69f, 0.0f, -9.15f);
+                    if(Input.GetKeyDown(KeyCode.F) || choice == 0){
+                        handPointer.GetComponent<Transform>().localScale = new Vector3(1.2f, 1.2f, 0.0f);
+                    }
+                    break;
+                case 4:
+                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+                    teleportLocation.SetActive(true);
+                    break;
+                case 6:
+                    drone.SetActive(true);
+                    break;
+                case 7:
+                    stats.SetActive(true);
+                    break;
+                case 8:
+                    money.SetActive(true);
+                    time.SetActive(true);
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    isTutorial=false;
+                    this.gameObject.SetActive(false);
+                    WaitForSeconds wait = new WaitForSeconds(2f);
+                    returnPad.SetActive(true);
+                    break;
+
+            }   
+
+                
+        sentenceNum ++;
+        }
+
     }
 
     // Activate pad interaction when a player enters its range
@@ -61,7 +119,18 @@ public class Interactable_Point : MonoBehaviour
             triggerActive = true;
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
             temp = textBox.text;
-            celluloController.set_leds_white();
+
+            if(isTutorial && sentenceNum == 3)
+            {
+                celluloController.applyChoiceSelectionColors();
+                Debug.Log("Choice selection colors applied");
+            }
+            else
+            {
+                Debug.Log("Choice selection colors not applied");
+                celluloController.set_leds_white();
+            }
+            
             switch(this.gameObject.name){
 
                 case "ReturnPad":
@@ -115,7 +184,9 @@ public class Interactable_Point : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
+            if(!isTutorial){
+                GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
+            }
             triggerActive = false;
             celluloController.reset_leds();
 

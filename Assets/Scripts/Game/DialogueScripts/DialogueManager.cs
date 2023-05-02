@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
     Setup dialogue sentences and dialogue box and begin by displaying first sentence.
     */
     public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox){
-        //Debug.Log("Starting dialogue :" + dialogue.name);
+        Debug.Log("Starting dialogue :" + dialogue.sentences.Length);
         //nameText.text = dialogue.name;
         finishedDialogue = false;
         sentences.Clear(); //clear previous 
