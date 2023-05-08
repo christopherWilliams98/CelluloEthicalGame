@@ -146,7 +146,8 @@ public class CelluloGameController : MonoBehaviour
         {"CityHall", 5},
         {"BirdReservoir", 6},
         {"PostOffice", 7},
-        {"Tutorial", 8},
+        {"TutorialClassroom", 8},
+        {"TutorialBus", 9}
     };
     
     private int findChoiceId(){

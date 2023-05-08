@@ -49,7 +49,7 @@ public class MainCelluloController : MonoBehaviour
     public void applyChoiceSelectionColors()
     {
         GameObject _leds = agent.transform.Find("Leds").gameObject;
-        agent.SetVisualEffect(VisualEffect.VisualEffectConstSingle, new Color(12f/255f, 123f/255f, 220/255f, 1f), 0);
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstSingle, new Color(230f/255f, 97f/255f, 0/255f, 1f), 0);
         //_leds.transform.GetChild(0).gameObject.GetComponent<Renderer>().materials[0].color = new Color(1.0f, 194f/255f, 10f/255f, 1f);
         //_leds.transform.GetChild(3).gameObject.GetComponent<Renderer>().materials[0].color = new Color(12f/255f, 123f/255f, 220/255f, 1f);
     }
@@ -57,13 +57,17 @@ public class MainCelluloController : MonoBehaviour
     // Resets all leds to purple
     public void reset_leds()
     {
-        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(1.0f,0f,1.0f,1f), 255);
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(0.0f,0f,0.0f,0f), 255);
     }
 
     // Sets LEDs to white
     public void set_leds_white()
     {
         agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(1.0f,1.0f,1.0f,1f), 255);
+    }
+
+    public void set_leds_green(){
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(0.0f,1.0f,0.0f,1f), 255);
     }
 
     // Check if the player is pressing a Cellulo led button

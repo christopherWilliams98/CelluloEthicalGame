@@ -26,11 +26,6 @@ public class Interactable_Point : MonoBehaviour
     public bool isTutorial = false;
 
     public int sentenceNum;
-    public GameObject drone;
-    public GameObject stats;
-    public GameObject money;
-    public GameObject time;
-    
     private bool once = true;
     void Start()
     {
@@ -45,10 +40,11 @@ public class Interactable_Point : MonoBehaviour
 
         int choice = celluloController.checkButtonPressed();
 
+        /*
         if(isTutorial && triggerActive){
             tutorialHandler(choice);
             return;
-        }
+        }*/
 
 
         // Check if player wants to interact with the pad
@@ -59,6 +55,7 @@ public class Interactable_Point : MonoBehaviour
     }
     
     
+    /*
     public void tutorialHandler(int choice){
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || choice != -1)
         {
@@ -110,6 +107,7 @@ public class Interactable_Point : MonoBehaviour
         }
 
     }
+    */
 
     // Activate pad interaction when a player enters its range
     public void OnTriggerEnter(Collider other)
@@ -131,40 +129,50 @@ public class Interactable_Point : MonoBehaviour
                 celluloController.set_leds_white();
             }
             
+            string interactInstructionString = "\n\nTouch and hold any light to interact";
+
             switch(this.gameObject.name){
 
                 case "ReturnPad":
-                    textBox.text = "Return back to city";
+                    textBox.text = "To Dufftown" + interactInstructionString;
                     break;
 
                 case "TechShopPad":
-                    textBox.text = "Consult drone expert \n\n" + "COST: 0.5 weeks";
+                    textBox.text = "Consult drone expert \n\n" + "COST: 0.5 weeks" + interactInstructionString;
                     break;
                     
                 case "OrnithologistPad":
-                    textBox.text = "Consult ornithologist \n\n" + "COST: 0.5 weeks";
+                    textBox.text = "Consult ornithologist \n\n" + "COST: 0.5 weeks" + interactInstructionString;
                     break;
 
                 case "CityParkPad":
-                    textBox.text = "Test drone in city park \n\n" + "COST: 0.5 weeks";
+                    textBox.text = "Test drone in city park \n\n" + "COST: 0.5 weeks" + interactInstructionString;
                     break;
                 
                 case "ExternalLocationPad":
-                    textBox.text = "Test drone on external location \n\n" + "COST: 1 week";
+                    textBox.text = "Test drone on external location \n\n" + "COST: 1 week" + interactInstructionString;
                     break;
 
                 case "CityHallPad":
-                    textBox.text = "Consult local council \n\n" + "COST: X weeks";
+                    textBox.text = "Consult local council \n\n" + "COST: X weeks" + interactInstructionString;
                     break;
 
                 case "BirdReservoirPad":
-                    textBox.text = "Consult bird reservoir director \n\n" + "COST: 1 week";
+                    textBox.text = "Consult bird reservoir director \n\n" + "COST: 1 week" + interactInstructionString;
                     break;
 
                 case "PostOfficePad":
                     textBox.text = "Ship finished product";
                     break;
-                
+
+                case "TutorialPad":
+                    textBox.text = "Amazing work! These grey doorway pads are used to enter locations in the game, and will display information about their respective locations when your robot is on top of them. To interact with the grey pad, please touch and hold any of the white lights on the robot.";
+                    break;
+
+                case "TutorialReturnPad":
+                    textBox.text = "You're all set to go! Home pads like this allow you return to the main map once you're done making choices in a location. To interact with the pad, touch and hold any of the white lights on the robot, just as you would on a grey doorway pad. When you're ready, give it a try!\nThis will start the game.";
+                    break;
+
                 default:
                 /*
                     if(this.gameObject.transform.parent.name == "ChoicePads"){
@@ -201,9 +209,13 @@ public class Interactable_Point : MonoBehaviour
         gameController.enableDialogueBox(true);
 
         triggerActive = false;
-        RectTransform droneImage = GameObject.Find("DroneImage").GetComponent<RectTransform>();
+
+        if(GameObject.Find("DroneImage") != null){
+            RectTransform droneImage = GameObject.Find("DroneImage").GetComponent<RectTransform>();
+        }
+
         celluloController.reset_leds();
-        if(this.gameObject.name == "ReturnPad")
+        if(this.gameObject.name == "ReturnPad" || this.gameObject.name == "TutorialReturnPad")
         {
             // Enable all other house pads, disable return pad and choice pads
             if(allPads!=null){
@@ -247,9 +259,9 @@ public class Interactable_Point : MonoBehaviour
             }
             
 
-            if(this.gameObject.transform.parent.name == "HousePads"){
-                gameController.lockInChoice();
-            }
+
+            gameController.lockInChoice();
+            
 
             // Move drone image to the desired house
             //droneImage.anchoredPosition3D = new Vector3(60f, 240f, 0);

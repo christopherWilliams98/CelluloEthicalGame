@@ -43,18 +43,32 @@ public class ChoicePoint : MonoBehaviour
                 // Accept
                 Debug.Log("Accepted");
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
-                dialogueManager.acceptChanges(subchoiceNum);
-                celluloController.reset_leds();
-                hasBeenUsed = true; 
+                celluloController.set_leds_green();
+
+                // TUTORIAL SPECIFIC INTERACTION
+                if(this.transform.parent.gameObject.name == "TutorialChoicePads"){
+                    sentenceNum++;
+                    choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
+                    // Enable the final tutorial dialogue pad
+                    Transform child = GameObject.Find("TutorialBus").gameObject.transform.GetChild(0);
+                    if(child != null){
+                        child.gameObject.SetActive(true);
+                    }
+
+                    Transform UICanvas = GameObject.Find("UICanvas").gameObject.transform;
+                    for(int i = 0; i < UICanvas.childCount; i++){
+                        Transform element = UICanvas.GetChild(i);
+                        if(element.gameObject.activeSelf == false){
+                            element.gameObject.SetActive(true);
+                        } 
+                    }
+                }else{ 
+                    dialogueManager.acceptChanges(subchoiceNum);
+                }
+                hasBeenUsed = true;
             }
-            else if (choice == 2 || Input.GetKeyDown(KeyCode.G)){
-                // Decline
-                Debug.Log("Declined");
-                
-            }
-            else {
-                // Do nothing
-            }
+        }else {
+            // Do nothing
         }
     }
 
@@ -68,18 +82,29 @@ public class ChoicePoint : MonoBehaviour
             if(!hasBeenVisited){
                 hasBeenVisited = true;
                 if(this.gameObject.transform.childCount != 0){
-                    Transform child = this.gameObject.transform.GetChild(0);
-                    if(child != null){
-                        child.gameObject.SetActive(true);
+                    for(int i = 0; i < this.gameObject.transform.childCount; i++){
+                        Transform child = this.gameObject.transform.GetChild(i);
+                        if(child != null){
+                            if(child.gameObject.name == "HandPointer"){
+                                child.gameObject.SetActive(false);
+                            }else{
+                                child.gameObject.SetActive(true);
+                            }
+                        }
                     }
                 }
 
                 
             }
-            if(this.name != "DialoguePad" && !hasBeenUsed){
-                // Light up the choice buttons
-                celluloController.applyChoiceSelectionColors();
-                isMakingChoice = true;
+            if(this.name != "DialoguePad"){
+                if(!hasBeenUsed){
+                    // Light up the choice buttons
+                    celluloController.applyChoiceSelectionColors();
+                    isMakingChoice = true;
+                }else{
+                    celluloController.set_leds_green();
+                }
+                
             }
 
 
