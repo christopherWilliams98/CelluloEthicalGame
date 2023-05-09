@@ -29,9 +29,11 @@ public class Interactable_Point : MonoBehaviour
 
     public int sentenceNum;
     private bool once = true;
+
+    public AudioSource enterSound;
+
     void Start()
     {
-
     }
     private void Update()
     {
@@ -244,6 +246,8 @@ public class Interactable_Point : MonoBehaviour
         gameController.enableDialogueBox(true);
 
         triggerActive = false;
+
+        enterSound.Play();
 
         if(GameObject.Find("DroneImage") != null){
             RectTransform droneImage = GameObject.Find("DroneImage").GetComponent<RectTransform>();
