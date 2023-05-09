@@ -158,12 +158,17 @@ public class Interactable_Point : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             triggerActive = true;
+            celluloController.set_leds_white();
 
+
+            if(isEnding){
+                return;
+            }
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
             
             temp = textBox.text;
 
-            celluloController.set_leds_white();
+           
             
             string interactInstructionString = "\n\n\nTouch and hold any light to interact";
 

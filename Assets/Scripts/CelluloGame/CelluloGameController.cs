@@ -407,6 +407,34 @@ public class CelluloGameController : MonoBehaviour
                 }
             }
         }
+        if(latestChoiceId == (int)choices.shipIt){
+            if(acceptedSubChoiceNumber == 0){
+                timeCost = (float)0.5;
+                financialCost = 0;
+                if(!checkIfEnoughResources(timeCost, financialCost)){
+                   return; 
+                }
+            }else{
+                timeCost = (float)0.0;
+                financialCost = 50;
+                if(!checkIfEnoughResources(timeCost, financialCost)){
+                   return; 
+                }
+            }
+            GameObject allMaps = GameObject.Find("HouseMaps");
+                for(int i = 0; i < allMaps.transform.childCount; i++){
+                    if(allMaps.transform.GetChild(i).gameObject.name == "Ending"){
+                        allMaps.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                    if(allMaps.transform.GetChild(i).gameObject.name == "PostOffice"){
+                        allMaps.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                }
+            // Disable original dialogue box
+            GameObject.Find("MainTextBox").SetActive(false);
+            GameObject.Find("Dialog Box Frame").SetActive(false);
+            GameObject.Find("ReturnPad").SetActive(false);
+        }
         //display updates
         updateAvailableBalanceAndTimeForSubChoices(timeCost, financialCost);
         refreshDroneSpecs();

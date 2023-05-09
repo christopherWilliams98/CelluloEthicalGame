@@ -39873,7 +39873,7 @@ MonoBehaviour:
   triggerActive: 0
   choiceText: 
   sentenceNum: 1
-  subchoiceNum: 0
+  subchoiceNum: 1
   gameController: {fileID: 0}
   celluloController: {fileID: 838800936}
 --- !u!65 &1252610290
@@ -47341,7 +47341,7 @@ MonoBehaviour:
   triggerActive: 0
   choiceText: 
   sentenceNum: 2
-  subchoiceNum: 1
+  subchoiceNum: 0
   gameController: {fileID: 0}
   celluloController: {fileID: 838800936}
 --- !u!65 &1476420299

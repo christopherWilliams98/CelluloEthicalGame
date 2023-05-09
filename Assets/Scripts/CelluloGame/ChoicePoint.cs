@@ -148,7 +148,9 @@ public class ChoicePoint : MonoBehaviour
             celluloController.reset_leds();
 
             // Restore the dialogue text
-            GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = previousTextboxText;
+            if(GameObject.Find("main_dialog") != null){
+                GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = previousTextboxText;
+            }
             triggerActive = false;
             isMakingChoice = false;
         }
