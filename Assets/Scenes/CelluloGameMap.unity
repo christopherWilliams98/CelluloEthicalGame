@@ -11300,11 +11300,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350787677}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.199997, y: 45.899998, z: 0}
+  m_LocalPosition: {x: -5.2, y: 29.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1468737481}
-  m_Father: {fileID: 1675649059}
+  m_Father: {fileID: 1021077655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &350787679
@@ -17475,7 +17475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568544435}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 6.87, y: 0.1, z: -5.11}
+  m_LocalPosition: {x: 6.87, y: 0, z: -5.11}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1419721744}
@@ -22306,7 +22306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 721340029}
   - component: {fileID: 721340031}
-  - component: {fileID: 721340030}
   m_Layer: 0
   m_Name: CityHall
   m_TagString: House1
@@ -22329,19 +22328,6 @@ Transform:
   m_Father: {fileID: 1199971226}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!65 &721340030
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721340028}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 14.136521, y: 10.001867, z: 0}
-  m_Center: {x: 7.0682607, y: -5.0009336, z: 0}
 --- !u!212 &721340031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24241,7 +24227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &789905602
 Transform:
   m_ObjectHideFlags: 0
@@ -29020,7 +29006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922545914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 31.549997, y: 18.900005, z: 0}
+  m_LocalPosition: {x: -10.3, y: 32.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 1468737481}
@@ -32701,6 +32687,122 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 18.823528, y: 10}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1021077654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1021077655}
+  - component: {fileID: 1021077658}
+  - component: {fileID: 1021077657}
+  - component: {fileID: 1021077656}
+  m_Layer: 0
+  m_Name: DialoguePad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1021077655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021077654}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1, y: 32.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_Children:
+  - {fileID: 350787678}
+  m_Father: {fileID: 1675649059}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1021077656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021077654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6725a62630b78d4291b79abc1480abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerActive: 0
+  choiceText: 
+  sentenceNum: 2
+  subchoiceNum: 0
+  gameController: {fileID: 0}
+  celluloController: {fileID: 838800936}
+--- !u!65 &1021077657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021077654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.928496, y: 10.000002, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!212 &1021077658
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021077654}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 101
+  m_Sprite: {fileID: 21300000, guid: 53e40c7609f810846816d85124b3eb94, type: 3}
+  m_Color: {r: 1, g: 0.9149882, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10.928495, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -38128,7 +38230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1206294887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46927,7 +47029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468737480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.549997, y: 20.049995, z: 0}
+  m_LocalPosition: {x: -10.2, y: 32.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 922545915}
@@ -47113,7 +47215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1471612691
 Transform:
   m_ObjectHideFlags: 0
@@ -47994,7 +48096,7 @@ MonoBehaviour:
   isTutorial: 0
   isEnding: 0
   sentenceNum: 0
-  enterSound: {fileID: 0}
+  enterSound: {fileID: 1715440015}
 --- !u!65 &1493471784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48946,7 +49048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1531254793
 Transform:
   m_ObjectHideFlags: 0
@@ -51689,7 +51791,7 @@ MonoBehaviour:
   isTutorial: 1
   isEnding: 0
   sentenceNum: 0
-  enterSound: {fileID: 0}
+  enterSound: {fileID: 1715440015}
 --- !u!65 &1654384694
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52735,10 +52837,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675649058}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 21.71, y: 0, z: -12.41}
+  m_LocalPosition: {x: 22.95, y: 0, z: -7.11}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children:
-  - {fileID: 350787678}
+  - {fileID: 1021077655}
   m_Father: {fileID: 1742038629}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -54179,9 +54281,9 @@ MonoBehaviour:
 
 '
   - sentences:
-    - 'You pack your bag and head on a trip to Scotland! After a good night''s sleep,
-      you rise before dawn to meet with a local birdwatcher to test out your drone
-      in the protected natural reserve.
+    - 'You pack your bag and head on a trip to the Scottish Highlands! After a good
+      night''s sleep, you rise before dawn to meet with a local birdwatcher to test
+      out your drone in the protected natural reserve.
 
 '
     - 'You head out eager to test out your drone on real birds, however you notice
@@ -54193,7 +54295,7 @@ MonoBehaviour:
 '
     - "Today you got lucky and the rain stopped for a couple of hours, although the
       local birdwatcher informs you that indeed in northern Scotland it rains 250
-      days per year.\n\nAfter a grueling 3h hike, you reach the remote peak and launch
+      days per year.\nAfter a grueling 3h hike, you reach the remote peak and launch
       the drone. The bird watcher is delighted with the increased visibility afforded
       by the drone, although a bit disappointed that the battery was depleted after
       a fairly short time. \n"
@@ -54267,9 +54369,7 @@ MonoBehaviour:
       have the added advantage of producing less noise than the plastic ones could
       be a good idea.
 
-
       Buying new propellers would cost you 50 CHF.
-
 
       Would
       you like to equip your drone with plastic propellers?
@@ -54281,10 +54381,8 @@ MonoBehaviour:
       Wood remains sturdy although not as light as carbon
       fiber or plastic.
 
-
-      This would cost you 50 CHF for the materials and
-      1 week in the lab.
-
+      This would cost you 50 CHF for the materials and 1
+      week in the lab.
 
       Would you like to make your drone frame out of wood?
 

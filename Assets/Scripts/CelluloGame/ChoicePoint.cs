@@ -41,12 +41,13 @@ public class ChoicePoint : MonoBehaviour
         if(triggerActive && isMakingChoice){
             if(choice == 0 || Input.GetKeyDown(KeyCode.F)){
                 // Accept
-                Debug.Log("Accepted");
+                Debug.Log("Attempted accept");
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
-                celluloController.set_leds_green();
+
 
                 // TUTORIAL SPECIFIC INTERACTION
                 if(this.transform.parent.gameObject.name == "TutorialChoicePads"){
+                    celluloController.set_leds_green();
                     sentenceNum++;
                     choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
                     // Enable the final tutorial dialogue pad
@@ -104,7 +105,7 @@ public class ChoicePoint : MonoBehaviour
                     celluloController.applyChoiceSelectionColors();
                     isMakingChoice = true;
                 }else{
-                    celluloController.set_leds_green();
+                    //celluloController.set_leds_green();
                 }
                 
             }
@@ -112,7 +113,7 @@ public class ChoicePoint : MonoBehaviour
             if(this.name == "DialoguePad" && this.transform.parent.gameObject.name == "CityParkChoicePads"){
                 GameObject droneImage = GameObject.Find("DroneImage");
                 if(droneImage != null){
-                    droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
+                    //droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
                     
                 }
             }

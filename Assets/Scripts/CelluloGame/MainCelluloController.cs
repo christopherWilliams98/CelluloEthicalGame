@@ -70,6 +70,10 @@ public class MainCelluloController : MonoBehaviour
         agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(0.0f,1.0f,0.0f,1f), 255);
     }
 
+    public void set_leds_orange(){
+        agent.SetVisualEffect(VisualEffect.VisualEffectConstAll, new Color(254/255f,97/255f,0.0f,1f), 255);
+    }
+
     // Check if the player is pressing a Cellulo led button
     public int checkButtonPressed(){
         Cellulo robot = agent._celluloRobot;

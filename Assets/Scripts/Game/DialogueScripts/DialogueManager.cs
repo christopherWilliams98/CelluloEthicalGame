@@ -81,13 +81,5 @@ public class DialogueManager : MonoBehaviour
 
     public void acceptChanges(int acceptedSubChoiceNumber){
         gameController.updateDroneRangesAndResources(acceptedSubChoiceNumber);  //update display of drone Ranges and balance
-        gameController.incrementSubChoiceNum(); //increment the index indicating what sub choice we are on
-    }
-
-    public void refuseChanges() {
-        //Wait till finish typing before activating the button
-        if(waitTillFinishTyping == false) {
-            gameController.incrementSubChoiceNum();//increment the index indicating what sub choice we are on
-        }   
     }
 }

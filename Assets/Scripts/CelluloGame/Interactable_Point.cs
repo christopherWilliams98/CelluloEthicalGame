@@ -297,14 +297,10 @@ public class Interactable_Point : MonoBehaviour
                 teleportLocation.SetActive(true);
             }
             
-
-
-            gameController.lockInChoice();
-            
             if(teleportLocation.name == "CityPark"){
                 GameObject droneImage = GameObject.Find("DroneImage");
                 if(droneImage != null){
-                    droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
+                    //droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
                     
                 }
             }
@@ -317,13 +313,15 @@ public class Interactable_Point : MonoBehaviour
             if(allPads != null){
                 allPads.SetActive(false);
             }
-            if(returnPad != null){
-                returnPad.SetActive(true);
-            } 
+
             if(choicePads != null){
                 choicePads.SetActive(true);
             }
-            
+            if(returnPad != null){
+                returnPad.SetActive(true);
+            } 
+
+            gameController.lockInChoice();
         }
         
     }
