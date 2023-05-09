@@ -25,6 +25,8 @@ public class Interactable_Point : MonoBehaviour
  
     public bool isTutorial = false;
 
+    public bool isEnding = false;
+
     public int sentenceNum;
     private bool once = true;
     void Start()
@@ -40,17 +42,58 @@ public class Interactable_Point : MonoBehaviour
 
         int choice = celluloController.checkButtonPressed();
 
-        /*
-        if(isTutorial && triggerActive){
-            tutorialHandler(choice);
+        if(isEnding && triggerActive){
+            if(Input.GetKeyDown(KeyCode.Space) || choice != -1){
+                endingHandler();
+            }
             return;
-        }*/
+        }
 
 
         // Check if player wants to interact with the pad
         if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || choice != -1))
         {
             Interact();
+        }
+    }
+
+    public void endingHandler(){
+
+        DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+        Dialogue dialogue = gameController.computeOutcomeDialogue();
+        TextMeshProUGUI textBox = GameObject.Find("ending_dialog").GetComponent<TextMeshProUGUI>();
+
+        if(sentenceNum == 0){
+            dialogueManager.StartDialogue(dialogue, textBox);
+            sentenceNum++;
+        }
+        else{
+            dialogueManager.DisplayNextSentence(sentenceNum++);
+        }
+
+        GameObject allScientists = GameObject.Find("Scientists");
+        switch(sentenceNum){
+            case 2:
+                for(int i = 0; i < allScientists.transform.childCount; i++){
+                    if(allScientists.transform.GetChild(i).gameObject.name == "Ansley Smith"){
+                        allScientists.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                    if(allScientists.transform.GetChild(i).gameObject.name == "Davina Murphy"){
+                        allScientists.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+                break;
+            case 3:
+                for(int i = 0; i < allScientists.transform.childCount; i++){
+                    if(allScientists.transform.GetChild(i).gameObject.name == "Davina Murphy"){
+                        allScientists.transform.GetChild(i).gameObject.SetActive(false);
+                    }
+                    if(allScientists.transform.GetChild(i).gameObject.name == "Fiona Wattson"){
+                        allScientists.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+                break; 
+            
         }
     }
     
@@ -115,21 +158,14 @@ public class Interactable_Point : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             triggerActive = true;
+
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
+            
             temp = textBox.text;
 
-            if(isTutorial && sentenceNum == 3)
-            {
-                celluloController.applyChoiceSelectionColors();
-                Debug.Log("Choice selection colors applied");
-            }
-            else
-            {
-                Debug.Log("Choice selection colors not applied");
-                celluloController.set_leds_white();
-            }
+            celluloController.set_leds_white();
             
-            string interactInstructionString = "\n\nTouch and hold any light to interact";
+            string interactInstructionString = "\n\n\nTouch and hold any light to interact";
 
             switch(this.gameObject.name){
 
@@ -162,7 +198,7 @@ public class Interactable_Point : MonoBehaviour
                     break;
 
                 case "PostOfficePad":
-                    textBox.text = "Ship finished product";
+                    textBox.text = "Enter the post office \n\n" + "COST: Free to visit" + interactInstructionString;
                     break;
 
                 case "TutorialPad":
@@ -170,17 +206,11 @@ public class Interactable_Point : MonoBehaviour
                     break;
 
                 case "TutorialReturnPad":
-                    textBox.text = "You're all set to go! Home pads like this allow you return to the main map once you're done making choices in a location. To interact with the pad, touch and hold any of the white lights on the robot, just as you would on a grey doorway pad. When you're ready, give it a try!\nThis will start the game.";
+                    textBox.text = "You're all set to go! Home pads like this one allow you return to the main map once you're done making choices in a location. To interact with the pad, touch and hold any of the white lights on the robot, just as you would on a grey doorway pad. When you're ready, give it a try!\nThis will start the game.";
                     break;
 
                 default:
-                /*
-                    if(this.gameObject.transform.parent.name == "ChoicePads"){
-                        textBox.text = "decision 1: Press green to Accept, red to decline the decision";
-                        celluloController.makeOneGreenOneRed();
-                        isMakingChoice = true;
-                    }
-                */
+
                     break;
             }
 
@@ -192,7 +222,7 @@ public class Interactable_Point : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(!isTutorial){
+            if(!isTutorial && !isEnding){
                 GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = temp;
             }
             triggerActive = false;
@@ -262,7 +292,13 @@ public class Interactable_Point : MonoBehaviour
 
             gameController.lockInChoice();
             
-
+            if(teleportLocation.name == "CityPark"){
+                GameObject droneImage = GameObject.Find("DroneImage");
+                if(droneImage != null){
+                    droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
+                    
+                }
+            }
             // Move drone image to the desired house
             //droneImage.anchoredPosition3D = new Vector3(60f, 240f, 0);
             //droneImage.sizeDelta = new Vector2(40,40);

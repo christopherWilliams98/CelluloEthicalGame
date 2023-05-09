@@ -96,6 +96,8 @@ public class ChoicePoint : MonoBehaviour
 
                 
             }
+
+            // If this is a choice point (not a dialogue pad), light up cellulo LEDs to indicate its current state
             if(this.name != "DialoguePad"){
                 if(!hasBeenUsed){
                     // Light up the choice buttons
@@ -105,6 +107,14 @@ public class ChoicePoint : MonoBehaviour
                     celluloController.set_leds_green();
                 }
                 
+            }
+
+            if(this.name == "DialoguePad" && this.transform.parent.gameObject.name == "CityParkChoicePads"){
+                GameObject droneImage = GameObject.Find("DroneImage");
+                if(droneImage != null){
+                    droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
+                    
+                }
             }
 
 

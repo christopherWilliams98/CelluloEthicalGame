@@ -470,14 +470,13 @@ public class CelluloGameController : MonoBehaviour
         
     }
 
-    private Dialogue computeOutcomeDialogue(){
+    public Dialogue computeOutcomeDialogue(){
         int outcomeNum = 0;
  
 
         StringBuilder sb = new StringBuilder("", 500);
         string sentence = "";
-        sb.AppendFormat("\n\n\n\n          ");
-        sb.AppendFormat(" Ansley Smith: \n\n");
+        sb.AppendFormat("Ansley Smith: \n\n");
         sb.AppendFormat("\"");
         if(protoDroneColor.Equals("Blue")) {
              sentence = "The color of drone is unfortunate because its color blends in with that of" + 
@@ -517,7 +516,6 @@ public class CelluloGameController : MonoBehaviour
         finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
         sb.Clear();
 
-        sb.AppendFormat("\n\n\n\n          ");
         sb.AppendFormat("Davina Murphy: \n\n");
         sb.AppendFormat("\"");
         if(has_wetsuit) {   
@@ -554,7 +552,7 @@ public class CelluloGameController : MonoBehaviour
         finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
         sb.Clear();
 
-        sb.AppendFormat("\n\n\n\n          ");
+
         sb.AppendFormat("Fiona Wattson: \n\n");
         sb.AppendFormat("\"");
         if(has_foldable_propellers) {
@@ -566,7 +564,7 @@ public class CelluloGameController : MonoBehaviour
         sb.AppendFormat(sentence + "\n\n");
 
         if(protoDroneWeight <= 1.0) {
-            sentence =  "Drone was light and easy to carry.";
+            sentence =  "Drone was light and nimble.";
         }else if(protoDroneWeight >= 2.0) {
             sentence = "Long flying time from the big battery was a great improvement from our last drone,"
          + " and the drone was stable in the wind."
