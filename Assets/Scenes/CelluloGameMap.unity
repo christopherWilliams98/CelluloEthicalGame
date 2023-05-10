@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04140359, g: 0.030628009, b: 0.044514224, a: 1}
+  m_IndirectSpecularColor: {r: 0.041425787, g: 0.030643893, b: 0.044549063, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19087,17 +19087,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Congratulations!!! you have made it to the end of the semester and yoru
+  m_text: 'Congratulations! You have made it to the end of the semester and your
     drone is now ready to be deployed in the real world!
 
 
     Your drone was donated
-    to  A scottish seabird marine study group!
+    to  a scottish seabird marine study group!
 
 
     place you drone on the green
-    pad and press an led to recieve feedcback from the researchers on the performance
-    of yoru drone! '
+    pad and press any led to recieve feedcback from the researchers on the performance
+    of your drone! '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bc1de604b91fb1f4bc8d2beeefe2c74, type: 2}
   m_sharedMaterial: {fileID: 9024649423926858605, guid: 0bc1de604b91fb1f4bc8d2beeefe2c74, type: 2}

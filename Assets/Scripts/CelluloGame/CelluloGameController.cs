@@ -525,6 +525,15 @@ public class CelluloGameController : MonoBehaviour
         availableBalance -= financialCost;
         remainingTimeText.text = "Time Left: " + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
+         // If the remaining time is less than 1 week, change the color of the text to orange
+        if(remainingTime <= 1f ){
+            remainingTimeText.color = new Color(254/255f, 97/255f, 0/255f, 1f); 
+        }
+
+        // If the available balance is less than 100, change the color of the text to orange
+        if(availableBalance <= 100){
+            availableBalanceText.color = new Color(254/255f, 97/255f, 0/255f, 1f);
+        }
         
     }
     //Update available balance and time for main choices
