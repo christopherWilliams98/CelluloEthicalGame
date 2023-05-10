@@ -29,16 +29,20 @@ public class Interactable_Point : MonoBehaviour
 
     public int sentenceNum;
     private bool once = true;
-
     public AudioSource enterSound;
+
+    private AudioSource greetings; 
+
 
     void Start()
     {
     }
     private void Update()
     {
-        if(isTutorial && once){
+        if(once && isTutorial){
             gameController.lockInChoice();
+            greetings = GameObject.Find("Greetings").GetComponent<AudioSource>();
+            greetings.Play();
             once = false;
         }
 
@@ -99,60 +103,6 @@ public class Interactable_Point : MonoBehaviour
         }
     }
     
-    
-    /*
-    public void tutorialHandler(int choice){
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || choice != -1)
-        {
-            GameObject handPointer = GameObject.Find("HandPointer");
-            DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
-            dialogueManager.DisplayNextSentence(sentenceNum);
-
-            switch(sentenceNum)
-            {
-                case 2:
-                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-                    this.transform.position = new Vector3(14.34f, 0.0f, -9.15f);
-                    break;
-                
-                case 3:
-                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-                    this.transform.position = new Vector3(18.69f, 0.0f, -9.15f);
-                    if(Input.GetKeyDown(KeyCode.F) || choice == 0){
-                        handPointer.GetComponent<Transform>().localScale = new Vector3(1.2f, 1.2f, 0.0f);
-                    }
-                    break;
-                case 4:
-                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
-                    teleportLocation.SetActive(true);
-                    break;
-                case 6:
-                    drone.SetActive(true);
-                    break;
-                case 7:
-                    stats.SetActive(true);
-                    break;
-                case 8:
-                    money.SetActive(true);
-                    time.SetActive(true);
-                    break;
-                case 9:
-                    break;
-                case 10:
-                    isTutorial=false;
-                    this.gameObject.SetActive(false);
-                    WaitForSeconds wait = new WaitForSeconds(2f);
-                    returnPad.SetActive(true);
-                    break;
-
-            }   
-
-                
-        sentenceNum ++;
-        }
-
-    }
-    */
 
     // Activate pad interaction when a player enters its range
     public void OnTriggerEnter(Collider other)
@@ -210,10 +160,18 @@ public class Interactable_Point : MonoBehaviour
 
                 case "TutorialPad":
                     textBox.text = "Amazing work! These grey doorway pads are used to enter locations in the game, and will display information about their respective locations when your robot is on top of them. To interact with the grey pad, please touch and hold any of the white lights on the robot.";
+                    AudioSource amazing = GameObject.Find("Amazing").GetComponent<AudioSource>();
+                    if(!amazing.isPlaying && !greetings.isPlaying){
+                        amazing.Play();
+                    }
                     break;
 
                 case "TutorialReturnPad":
                     textBox.text = "You're all set to go! Home pads like this one allow you return to the main map once you're done making choices in a location. To interact with the pad, touch and hold any of the white lights on the robot, just as you would on a grey doorway pad. When you're ready, give it a try!\nThis will start the game.";
+                    AudioSource allSet = GameObject.Find("all set to go").GetComponent<AudioSource>();
+                    List<AudioSource> audioSources = new List<AudioSource>(FindObjectsOfType<AudioSource>());
+                    ChoicePoint.StopAllAudio(audioSources);
+                    allSet.Play();
                     break;
 
                 default:

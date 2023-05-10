@@ -14,6 +14,11 @@ public class ChoicePoint : MonoBehaviour
     private int cooldown = 300;
     private bool hasBeenUsed = false;
     private bool hasBeenVisited = false;
+    public bool isTutorial = false;
+
+    public AudioSource audioSource;
+
+    public List<AudioSource> audioSources;
 
     public CelluloGameController gameController;
     
@@ -25,6 +30,7 @@ public class ChoicePoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSources = new List<AudioSource>(FindObjectsOfType<AudioSource>());
 
     }
 
@@ -47,8 +53,14 @@ public class ChoicePoint : MonoBehaviour
 
                 // TUTORIAL SPECIFIC INTERACTION
                 if(this.transform.parent.gameObject.name == "TutorialChoicePads"){
+
+                    //audio
+                    StopAllAudio(audioSources);
+                    AudioSource acceptedAudio = GameObject.Find("glad to have").GetComponent<AudioSource>();
+                    acceptedAudio.Play();
                     celluloController.set_leds_green();
                     sentenceNum++;
+                    
                     choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
                     // Enable the final tutorial dialogue pad
                     Transform child = GameObject.Find("TutorialBus").gameObject.transform.GetChild(0);
@@ -88,6 +100,8 @@ public class ChoicePoint : MonoBehaviour
                         if(child != null){
                             if(child.gameObject.name == "HandPointer"){
                                 child.gameObject.SetActive(false);
+
+                            
                             }else{
                                 child.gameObject.SetActive(true);
                             }
@@ -129,6 +143,7 @@ public class ChoicePoint : MonoBehaviour
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
                 choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
                 Debug.Log("choiceText: " + choiceText);
+                playAudio();
                 
             }else{
                 textBox.text = choiceText;
@@ -140,6 +155,8 @@ public class ChoicePoint : MonoBehaviour
         }
     }
 
+
+
     // Deactivate the choice point when a player leaves its range
     void OnTriggerExit(Collider other)
     {
@@ -149,14 +166,32 @@ public class ChoicePoint : MonoBehaviour
             celluloController.reset_leds();
 
             // Restore the dialogue text
-            if(GameObject.Find("main_dialog") != null){
+            if(GameObject.Find("main_dialog") != null && !isTutorial){
                 GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>().text = previousTextboxText;
             }
             triggerActive = false;
             isMakingChoice = false;
         }
     }
+    //plays the audio attached to the choice pad
+    void playAudio(){
+        if(audioSource != null){
+            StopAllAudio(audioSources);
+            audioSource.Play();
+            
+        }
+    }
 
-
+    //stops all audio from playing
+    public static void StopAllAudio(List<AudioSource> sources)
+    {
+        foreach (AudioSource audioSource in sources)
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
+    }
 
 }
