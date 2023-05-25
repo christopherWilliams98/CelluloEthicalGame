@@ -6,12 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GameMenu.unity
-    guid: 3950ec31c78b2054e8c4f5553947efd9
-  - enabled: 1
-    path: Assets/Scenes/MissionStatement.unity
-    guid: 2bb18f76d19b3544eb0421b6460dd4e6
-  - enabled: 1
     path: Assets/Scenes/CelluloGameMap.unity
     guid: 9a6acb4cff60e3f4097bb564b113e49b
   m_configObjects: {}

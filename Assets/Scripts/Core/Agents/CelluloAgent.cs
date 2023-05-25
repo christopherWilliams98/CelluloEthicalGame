@@ -223,7 +223,7 @@ public class CelluloAgent : SteeringAgent
     public void RealToUnity(){
         if (isConnected && _celluloRobot.pose.sqrMagnitude>0)
         {
-            transform.localPosition = new Vector3(Config.RealToUnityScaleInX(-_celluloRobot.pose.y + 1090), 0, Config.RealToUnityScaleInY(_celluloRobot.pose.x - 480));
+            transform.localPosition = new Vector3(Config.RealToUnityScaleInX(-_celluloRobot.pose.y + 1280), 0, Config.RealToUnityScaleInY(_celluloRobot.pose.x - 600));
             transform.localRotation = Quaternion.Euler(0, _celluloRobot.pose.z, 0);
         }
     }

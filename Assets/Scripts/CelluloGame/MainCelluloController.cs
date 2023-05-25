@@ -10,6 +10,8 @@ public class MainCelluloController : MonoBehaviour
 
     public GameObject statMenu;
 
+    bool once = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,10 @@ public class MainCelluloController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(agent != null && !once){
+            agent.MoveOnIce();
+            once = true;
+        }
         // Check if player wants to access the stat menu
         if(playerMenuEnabled && (Input.GetKeyDown(KeyCode.Space)))
         {

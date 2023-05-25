@@ -36,9 +36,14 @@ public class Interactable_Point : MonoBehaviour
 
     void Start()
     {
+        Screen.fullScreen = true;
     }
     private void Update()
     {
+        if(cooldown > 0){
+            cooldown--;
+        }
+
         if(once && isTutorial){
             gameController.lockInChoice();
             greetings = GameObject.Find("Greetings").GetComponent<AudioSource>();
@@ -48,17 +53,19 @@ public class Interactable_Point : MonoBehaviour
 
         int choice = celluloController.checkButtonPressed();
 
-        if(isEnding && triggerActive){
+        if(isEnding && triggerActive && cooldown == 0){
             if(Input.GetKeyDown(KeyCode.Space) || choice != -1){
                 endingHandler();
+                cooldown = 300;
             }
             return;
         }
 
 
         // Check if player wants to interact with the pad
-        if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || choice != -1))
+        if(triggerActive && (Input.GetKeyDown(KeyCode.Space) || choice != -1 ) && cooldown == 0)
         {
+            cooldown = 300;
             Interact();
         }
     }
@@ -147,7 +154,7 @@ public class Interactable_Point : MonoBehaviour
                     break;
 
                 case "CityHallPad":
-                    textBox.text = "Consult local council \n\n" + "COST: X weeks" + interactInstructionString;
+                    textBox.text = "Consult local council \n\n" + "COST: 1 week" + interactInstructionString;
                     break;
 
                 case "BirdReservoirPad":
@@ -205,6 +212,7 @@ public class Interactable_Point : MonoBehaviour
 
         triggerActive = false;
 
+        if(!isEnding)
         enterSound.Play();
 
         if(GameObject.Find("DroneImage") != null){
