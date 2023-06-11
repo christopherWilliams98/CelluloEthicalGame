@@ -1,4 +1,4 @@
-Ethical Game "Build your Drone", adapted from Gianniii's original version of the game:
+Ethical Game "Build your Drone", adapted from Gianniii's original version of the game.
 
 link to the original version:
 
