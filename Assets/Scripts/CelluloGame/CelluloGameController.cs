@@ -33,15 +33,10 @@ public class CelluloGameController : MonoBehaviour
     //Final outcome dialogue box
     public Image scientistImageBox;
     public Sprite[] scientistImages;
-    private int currentScientist = 0;
     public DialogueTrigger finalDialogueTriggerButton; 
     public Dialogue finalOutcomeDialogue;
     public TextMeshProUGUI finalOutcomeDialogueTextBox;
-
-    //If locked in ornythologist before drone expert then should i propose choice between two colors??
-    //could always propose choice between two colors maybe??
-    //private int locked_in_ornythologist:
-
+    private Color orange = new Color(254/255f, 97/255f, 0/255f, 1f);
     //Drone Specs
     private static int protoNoiseLevel = 80; // [db]
     private static int protoDroneSize = 25;
@@ -68,7 +63,6 @@ public class CelluloGameController : MonoBehaviour
 
     //Array of locked choice and choice selection objects
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
-    public DropSlot slot; //slot where choice is dropped into
 
     /* Tabs and dialogues -------------------------------------------------------*/
     //public DialogueManager dialogueManager;
@@ -85,7 +79,6 @@ public class CelluloGameController : MonoBehaviour
     //(Necessary to know when to start using accept/refuse buttons)
     public int latestChoiceId = 0;
     int acceptedSubChoiceNumber = 0; //represents the current subchoice withing the main choice
-    bool accept = false; //record user's choice
     //These buttons spawn when player must make choice of accepting to refusing the proposed changes from the expert
     public Button acceptButton; 
     public Button refuseButton;
@@ -240,9 +233,7 @@ public class CelluloGameController : MonoBehaviour
                     protoDroneColor = "White";
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
                 
@@ -254,9 +245,7 @@ public class CelluloGameController : MonoBehaviour
                     has_manual = true;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             }
@@ -270,9 +259,7 @@ public class CelluloGameController : MonoBehaviour
                     protoDroneColor = "Purple";
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 1) { //Make drone out of carbon fiber
@@ -283,9 +270,7 @@ public class CelluloGameController : MonoBehaviour
                     protoNoiseLevel -= 10;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             }
@@ -300,10 +285,9 @@ public class CelluloGameController : MonoBehaviour
                     protoNoiseLevel += 10;
                     protoDroneLifespan += 5;
                     isSuccessful = true;
-                } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                } else
+                {
+                    notEnoughResources(celluloController);
                     return;
                 }
             }
@@ -316,9 +300,7 @@ public class CelluloGameController : MonoBehaviour
                     has_wetsuit = true;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 1) { //get bigger battery
@@ -331,9 +313,7 @@ public class CelluloGameController : MonoBehaviour
                     protoDroneLifespan += 3;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 1");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 2) { //switch to carbon fiber
@@ -350,9 +330,7 @@ public class CelluloGameController : MonoBehaviour
                     protoFrameMaterial = "Carbon Fiber";
                     
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 2");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             }
@@ -366,9 +344,7 @@ public class CelluloGameController : MonoBehaviour
                     has_foldable_propellers = true;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 1) { // Make drone lighter??
@@ -380,9 +356,7 @@ public class CelluloGameController : MonoBehaviour
                     protoDroneLifespan += 2;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 1");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             }
@@ -400,9 +374,7 @@ public class CelluloGameController : MonoBehaviour
                     protoPropellerMaterial = "Wood";
                     
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 1) { //switch to carbon fiber if not already?(reapeat same pro&cons as last time)
@@ -413,9 +385,7 @@ public class CelluloGameController : MonoBehaviour
                     protoDroneWeight += 0.5;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 2) { //make drone smaller and lighter
@@ -427,9 +397,7 @@ public class CelluloGameController : MonoBehaviour
                     protoNoiseLevel -= 5;
                     isSuccessful = true;
                 } else {
-                    dialogueTextBox.text = "Not enough resources!";
-                    Debug.Log("Not enough resources, drone expert choice 0");
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return;
                 }
             }
@@ -439,8 +407,7 @@ public class CelluloGameController : MonoBehaviour
                 timeCost = (float)0.5;
                 financialCost = 0;
                 if(!checkIfEnoughResources(timeCost, financialCost)){
-                    dialogueTextBox.text = "Not enough resources!";
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return; 
                 }else{
                     isSuccessful = true;
@@ -449,8 +416,7 @@ public class CelluloGameController : MonoBehaviour
                 timeCost = (float)0.0;
                 financialCost = 50;
                 if(!checkIfEnoughResources(timeCost, financialCost)){
-                    dialogueTextBox.text = "Not enough resources!";
-                    celluloController.set_leds_orange();
+                    notEnoughResources(celluloController);
                     return; 
                 }else{
                     isSuccessful = true;
@@ -480,6 +446,15 @@ public class CelluloGameController : MonoBehaviour
         refreshDroneSpecs();
         
     }
+
+    //Helper function that handles the event of not enough resources
+    private void notEnoughResources(MainCelluloController celluloController)
+    {
+        dialogueTextBox.text = "Not enough resources!";
+        Debug.Log("Not enough resources");
+        celluloController.set_leds_orange();
+    }
+
     //Contains logic calculate the next text to display in scrollBar
     //Each choice locked in has an according display text
     private void updateMainTabText(Dialogue new_dialogue){
@@ -527,12 +502,12 @@ public class CelluloGameController : MonoBehaviour
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
          // If the remaining time is less than 1 week, change the color of the text to orange
         if(remainingTime <= 1f ){
-            remainingTimeText.color = new Color(254/255f, 97/255f, 0/255f, 1f); 
+            remainingTimeText.color = orange;
         }
 
         // If the available balance is less than 100, change the color of the text to orange
         if(availableBalance <= 100){
-            availableBalanceText.color = new Color(254/255f, 97/255f, 0/255f, 1f);
+            availableBalanceText.color = orange;
         }
         
     }
@@ -545,12 +520,12 @@ public class CelluloGameController : MonoBehaviour
 
         // If the remaining time is less than 1 week, change the color of the text to orange
         if(remainingTime <= 1f ){
-            remainingTimeText.color = new Color(254/255f, 97/255f, 0/255f, 1f); 
+            remainingTimeText.color = orange;
         }
 
         // If the available balance is less than 100, change the color of the text to orange
         if(availableBalance <= 100){
-            availableBalanceText.color = new Color(254/255f, 97/255f, 0/255f, 1f);
+            availableBalanceText.color = orange;
         }
 
         remainingTimeText.text = "Time Left: " + remainingTime.ToString("F1") +" Weeks";
@@ -704,9 +679,9 @@ public class CelluloGameController : MonoBehaviour
 
     public void restartGame(){
         resetStaticVariables();
-        SceneManager.LoadScene(0);
-        
+        SceneManager.LoadScene(0);    
     }
+
     private void resetStaticVariables(){
         protoDroneSize = 25;
         protoDroneWeight = 1.0;
@@ -721,13 +696,4 @@ public class CelluloGameController : MonoBehaviour
         availableBalance = 300; 
     }
 
-    public void updateScientistImage(){
-        scientistImageBox.gameObject.SetActive(true);
-        currentScientist++;
-        if(currentScientist < scientistImages.Length) {
-            scientistImageBox.sprite = scientistImages[currentScientist];
-        } else {
-            scientistImageBox.gameObject.SetActive(false);
-        }
-    }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class AgentBehaviour : MonoBehaviour
 {
+    
     public float weight = 1.0f;
     protected CelluloAgent agent;
 

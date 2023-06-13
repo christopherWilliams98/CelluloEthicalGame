@@ -13,7 +13,6 @@ public class DialogueManager : MonoBehaviour
     public CelluloGameController gameController; //Needed to notify gameController that drone rangesAndBalance can be updated based on choice to accept or refuse.
     //Alternatively choice could just notify gameController.acceptRefuseChoiceMade();
     private TextMeshProUGUI dialogueText;
-    private int currentSentence = 0;
     public bool finishedDialogue = false;
     private List<string> sentences; //Load sentences as read through dialog
 
@@ -57,15 +56,12 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences[sentenceNum];
         //Can only display next sentence if finished typing out the previous sentence
         if(waitTillFinishTyping == false) {
-            if(SceneManager.GetActiveScene().name == "EndingScene") {
-                gameController.updateScientistImage();
-            }
             
             waitTillFinishTyping = true;
             //StopAllCoroutines();//Stop if click continue before last coroutine ended
             StartCoroutine(TypeSentence(sentence));
         }
-        return sentence;
+         return sentence;
     }
 
     //Code for animating the typing of sentence letter by letter

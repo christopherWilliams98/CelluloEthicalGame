@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04140359, g: 0.030628009, b: 0.044514224, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15723,6 +15723,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 3
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &479322034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25329,6 +25330,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 6
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &760338371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26332,6 +26334,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 1
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &793694748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27976,7 +27979,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 838800930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d07190bba2ba384ab93251a693acffa, type: 3}
+  m_Script: {fileID: 11500000, guid: 8acacca2e9455bc43b9ceda2f3df8dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
@@ -30968,7 +30971,7 @@ MonoBehaviour:
   triggerActive: 0
   choiceText: 
   sentenceNum: 5
-  subchoiceNum: 1
+  subchoiceNum: 2
   isTutorial: 0
   audioSource: {fileID: 619801519}
   audioSources: []
@@ -35802,6 +35805,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 2
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &1029696364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39780,6 +39784,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 7
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &1165347306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58709,7 +58714,6 @@ MonoBehaviour:
   EnterButton: {fileID: 1715440014}
   dialogueTextBox: {fileID: 1810347327}
   scrollBarText: {fileID: 0}
-  slot: {fileID: 0}
   popUp: {fileID: 0}
   mainTab: {fileID: 0}
   tabController: {fileID: 1715440009}
@@ -63796,6 +63800,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 5
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &1843104953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67135,6 +67140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppedChoice: {fileID: 0}
+  isEmptySlot: 1
 --- !u!225 &1963268949
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -67854,6 +67860,7 @@ MonoBehaviour:
   rectTransform: {fileID: 0}
   choice_id: 4
   original_position: {x: 0, y: 0, z: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &1972423674
 MonoBehaviour:
   m_ObjectHideFlags: 0

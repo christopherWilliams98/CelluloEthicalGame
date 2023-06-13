@@ -11,22 +11,14 @@ public class ChoicePoint : MonoBehaviour
     public string choiceText = "";
     public int sentenceNum;
     public int subchoiceNum;
-    private int cooldown = 300;
     private bool hasBeenUsed = false;
     private bool hasBeenVisited = false;
     public bool isTutorial = false;
-
     public AudioSource audioSource;
-
     public List<AudioSource> audioSources;
-
     public CelluloGameController gameController;
-    
     int choice = -1;
-
     public MainCelluloController celluloController;
-
-
     // Start is called before the first frame update
     void Start()
     {
