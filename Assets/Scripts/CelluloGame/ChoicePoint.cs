@@ -16,14 +16,13 @@ public class ChoicePoint : MonoBehaviour
     public bool isTutorial = false;
     public AudioSource audioSource;
     public List<AudioSource> audioSources;
-    public CelluloGameController gameController;
     int choice = -1;
     public MainCelluloController celluloController;
-    // Start is called before the first frame update
+
+    // Initialize audio sources
     void Start()
     {
         audioSources = new List<AudioSource>(FindObjectsOfType<AudioSource>());
-
     }
 
     // Update is called once per frame
@@ -36,16 +35,14 @@ public class ChoicePoint : MonoBehaviour
 
         choice = celluloController.checkButtonPressed();
 
+        // If the player's robot is on a choice point, check if they want to interact
         if(triggerActive && isMakingChoice){
             if(choice == 0 || Input.GetKeyDown(KeyCode.F)){
                 // Accept
-                Debug.Log("Attempted accept");
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
-
 
                 // TUTORIAL SPECIFIC INTERACTION
                 if(this.transform.parent.gameObject.name == "TutorialChoicePads"){
-
                     //audio
                     StopAllAudio(audioSources);
                     AudioSource acceptedAudio = GameObject.Find("glad to have").GetComponent<AudioSource>();
@@ -68,9 +65,10 @@ public class ChoicePoint : MonoBehaviour
                         } 
                     }
                 }else{ 
+                    // Simply accept
                     dialogueManager.acceptChanges(subchoiceNum);
                 }
-                hasBeenUsed = true;
+                hasBeenUsed = true; // Mark the choice point as used so that the choice cannot be repeated
             }
         }else {
             // Do nothing
@@ -80,7 +78,6 @@ public class ChoicePoint : MonoBehaviour
     // Activate the choice point when a player enters its range
     void OnTriggerEnter(Collider other)
     {
-  
         if (other.CompareTag("Player"))
         {
             // When the point is visited, activate the next pad if it exists
@@ -92,8 +89,6 @@ public class ChoicePoint : MonoBehaviour
                         if(child != null){
                             if(child.gameObject.name == "HandPointer"){
                                 child.gameObject.SetActive(false);
-
-                            
                             }else{
                                 child.gameObject.SetActive(true);
                             }
@@ -110,17 +105,6 @@ public class ChoicePoint : MonoBehaviour
                     // Light up the choice buttons
                     celluloController.applyChoiceSelectionColors();
                     isMakingChoice = true;
-                }else{
-                    //celluloController.set_leds_green();
-                }
-                
-            }
-
-            if(this.name == "DialoguePad" && this.transform.parent.gameObject.name == "CityParkChoicePads"){
-                GameObject droneImage = GameObject.Find("DroneImage");
-                if(droneImage != null){
-                    //droneImage.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(-947f, -331f, 0);
-                    
                 }
             }
 
@@ -131,18 +115,14 @@ public class ChoicePoint : MonoBehaviour
 
             // Change the dialogue text to the choice text~
             if(choiceText == ""){
-
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
                 choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
-                Debug.Log("choiceText: " + choiceText);
                 playAudio();
-                
             }else{
                 textBox.text = choiceText;
             }
             
-            triggerActive = true;
-
+            triggerActive = true; // Enable possible interaction with the pad
             
         }
     }
@@ -165,7 +145,8 @@ public class ChoicePoint : MonoBehaviour
             isMakingChoice = false;
         }
     }
-    //plays the audio attached to the choice pad
+    
+    // Plays the audio attached to the choice pad
     void playAudio(){
         if(audioSource != null){
             StopAllAudio(audioSources);

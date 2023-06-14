@@ -28,14 +28,11 @@ public class DialogueManager : MonoBehaviour
     Setup dialogue sentences and dialogue box and begin by displaying first sentence.
     */
     public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox){
-        Debug.Log("Starting dialogue :" + dialogue.sentences.Length);
-        //nameText.text = dialogue.name;
         finishedDialogue = false;
         sentences.Clear(); //clear previous 
         dialogueText = dialogueTextBox;
         foreach(string sentence in dialogue.sentences) {
             sentences.Add(sentence);
-            Debug.Log("Enqueue sentence: "+ sentence);
         }
         DisplayNextSentence();
 
@@ -45,9 +42,7 @@ public class DialogueManager : MonoBehaviour
     Display next sentence in queue
     */
     public string DisplayNextSentence(int sentenceNum = 0) {
-        //reach end of queue
-        Debug.Log("DisplayNextSentence() called");
-
+        // If reached end of sentence queue
         if(sentences.Count == 0) {
             finishedDialogue = true;
             return "";

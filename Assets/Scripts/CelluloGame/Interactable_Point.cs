@@ -217,8 +217,6 @@ public class Interactable_Point : MonoBehaviour
     // Teleport player to the desired house or return to the main map
     public void Interact()
     {
-        //Debuging purposes only
-        //Debug.Log("Talking with " + gameObject.name + "");
 
         // enable the dialogue box
         gameController.enableDialogueBox(true);
@@ -244,7 +242,6 @@ public class Interactable_Point : MonoBehaviour
                 allPads.SetActive(true);
             } 
             if(returnPad != null){
-                Debug.Log("REMOVING RETURN PAD");
                 returnPad.SetActive(false);
             } 
             foreach(Transform choicePad in GameObject.Find("ChoicePads").transform){

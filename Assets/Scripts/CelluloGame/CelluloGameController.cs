@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Timers;
 
-//Blake Hill
+// List of possible locations to visit
 public enum choices
 {
     None, //0
@@ -25,17 +25,6 @@ public enum choices
 
 public class CelluloGameController : MonoBehaviour
 {
-    //TODO perhaps make new script for missionStatementScene so its less cluttered
-    //Intro page 
-    public DialogueTrigger MissionStatementTriggerButton; //TODO try to trigger on awake using text for now try with button
-    public Dialogue MissionStatementDialogue;
-    public TextMeshProUGUI MissionStatementDialogueTextBox;
-    //Final outcome dialogue box
-    public Image scientistImageBox;
-    public Sprite[] scientistImages;
-    public DialogueTrigger finalDialogueTriggerButton; 
-    public Dialogue finalOutcomeDialogue;
-    public TextMeshProUGUI finalOutcomeDialogueTextBox;
     private Color orange = new Color(254/255f, 97/255f, 0/255f, 1f);
     //Drone Specs
     private static int protoNoiseLevel = 80; // [db]
@@ -52,36 +41,24 @@ public class CelluloGameController : MonoBehaviour
     public Image droneImage;
     public Sprite droneWhiteSpriteImage;
     public Sprite dronePurpleSpriteImage;
-    public static List<string> colorList = new List<string>{"white", "purple", "blue"};
-    //public static int[] droneSizeRange = {20, 150}; //min and max size range
-    //public static double[] droneWeightRange = {0.5, 10};
+    
 
-    //Main Tab Feedback text
+    //Main dialogue text
     public DialogueTrigger EnterButton;
     public TextMeshProUGUI dialogueTextBox;
-    public TextMeshProUGUI scrollBarText; //Contains text currently displayed in scrollBar
+   
 
     //Array of locked choice and choice selection objects
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
 
-    /* Tabs and dialogues -------------------------------------------------------*/
-    //public DialogueManager dialogueManager;
-    public PopUpScript popUp;
-    public Button mainTab;
-    public TabController tabController;
-    //Array of dialogues 
+    /* Array of dialogues -------------------------------------------------------*/
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
     private string[] finalOutcomeDialogueSentences = {"var 0", "var 1", 
     "var 2", "var 3", "var4"};
 
     /*ACCEPT/REFUSE------------------------------------------------------------------*/
-    public int[] numSubChoices; //maps Choices => int representing number of subchoices for this main choice. 
-    //(Necessary to know when to start using accept/refuse buttons)
     public int latestChoiceId = 0;
     int acceptedSubChoiceNumber = 0; //represents the current subchoice withing the main choice
-    //These buttons spawn when player must make choice of accepting to refusing the proposed changes from the expert
-    public Button acceptButton; 
-    public Button refuseButton;
 
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
@@ -92,21 +69,7 @@ public class CelluloGameController : MonoBehaviour
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
     // -----------------------------------------------------------------------------
     void Start()
-    {   //Set on MissionStatement scene set up MissionStatementDialogue
-        if(MissionStatementTriggerButton!= null) {
-            MissionStatementTriggerButton.dialogueTextBox = MissionStatementDialogueTextBox;
-            MissionStatementTriggerButton.dialogue = MissionStatementDialogue;
-            MissionStatementTriggerButton.allowRestart = false;
-        }
-
-        //If on final scene setup final trigger with its dialogue
-        if(finalDialogueTriggerButton!= null) {
-            finalDialogueTriggerButton.dialogueTextBox = finalOutcomeDialogueTextBox;
-            finalOutcomeDialogue = computeOutcomeDialogue();
-            finalDialogueTriggerButton.dialogue = finalOutcomeDialogue;
-            finalDialogueTriggerButton.allowRestart = false;
-        }
-      
+    {   
         //Print balance and drone specs 
         if(SceneManager.GetActiveScene().name == "DroneGameCellulo") {
             remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
@@ -156,16 +119,13 @@ public class CelluloGameController : MonoBehaviour
 
     /**
     Manages what happens any time a user locks in a choice.
-    This is triggered any time a user locks in a choice by placing their cellulo on the accept pad
+    This is triggered any time a user locks in a choice by placing their cellulo 
+    on a doorway or choice pad and interacting with it. 
     */
     public void lockInChoice() {
-
-        Debug.Log("Entering lockInChoice");
         acceptedSubChoiceNumber = 0; //reset subChoice index
 
-        latestChoiceId = findChoiceId();
-        Debug.Log("latestChoiceId: " + latestChoiceId);
-
+        latestChoiceId = findChoiceId(); // get the current choice from all locations
 
         //Get cost of choice and check if have avaible funds
         float mainChoiceTimeCost = mainChoiceTimeCosts[latestChoiceId];
@@ -178,15 +138,14 @@ public class CelluloGameController : MonoBehaviour
         
             //Update game paramaters and UI
             updateMainTabText(choiceFeedbackDialogues[latestChoiceId]); //update text in main tab
-            //updateMainTabName(choiceFeedbackDialogues[latestChoiceId])
-            EnterButton.TriggerDialogueMainTab(); //trigger dialogue in MainTab
+
+            EnterButton.TriggerDialogueMainTab(); //trigger dialogue 
 
             //update available time and balance due to locking in this main choice
             updateAvailableBalanceAndTimeForMainChoice(latestChoiceId);
         } else {
             GameObject.Find("ReturnPad").GetComponent<Interactable_Point>().Interact();
         }
-        //Check if game ended, then activate final scene.
 
     }
 
@@ -209,18 +168,11 @@ public class CelluloGameController : MonoBehaviour
         return true;
     }
     /**
-    This method is called whenever a subChoice is accepted
+    This method is called whenever a choice is made
     Updates drone ranges according to accepted subChoice
-    Called whenever choice is accepted
     */
     public void updateDroneRangesAndResources(int acceptedSubChoiceNumber){
-        Debug.Log("Calls updateDronRanges");
-        Debug.Log(latestChoiceId);
-        Debug.Log(acceptedSubChoiceNumber);
-        //TODO here check if availableBalance and RemaningTime is sufficient for this subchoice
         //Once we know what choice was made, need to check if have enough funds before executing changes.
-        //If not enough DONT EXECUTE!! + inform user somehow that not enough funds!
-
         float timeCost= (float)0.0;
         int financialCost = 0;
         bool isSuccessful = false;
@@ -451,7 +403,6 @@ public class CelluloGameController : MonoBehaviour
     private void notEnoughResources(MainCelluloController celluloController)
     {
         dialogueTextBox.text = "Not enough resources!";
-        Debug.Log("Not enough resources");
         celluloController.set_leds_orange();
     }
 
@@ -489,8 +440,6 @@ public class CelluloGameController : MonoBehaviour
             droneImage.sprite = droneWhiteSpriteImage;
         } else if(protoDroneColor == "Purple") {
             droneImage.sprite = dronePurpleSpriteImage; 
-        } else {
-            //droneImage.sprite = 
         }
     }
 
@@ -513,8 +462,6 @@ public class CelluloGameController : MonoBehaviour
     }
     //Update available balance and time for main choices
     private void updateAvailableBalanceAndTimeForMainChoice(int locked_choice_id) {
-        Debug.Log("availableBalance choice" + locked_choice_id.ToString());
-        Debug.Log("cost of choice" + mainChoiceFinancialCosts[locked_choice_id].ToString());
         remainingTime-= mainChoiceTimeCosts[locked_choice_id];
         availableBalance -= mainChoiceFinancialCosts[locked_choice_id];
 
@@ -637,20 +584,11 @@ public class CelluloGameController : MonoBehaviour
             sentence = "In terms of weight, it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
         }
         sb.AppendFormat(sentence);
-        /*if(protoFrameMaterial == "Wood") {
-            sentence = "Using wood";
-        } else if(protoFrameMaterial == "Carbon Fiber") {
-            sentence = "Using Carbon Fiber";
-        } else if(protoFrameMaterial == "Aluminium") {
-            sentence = "Using Aluminium";
-        }*/
         sb.AppendFormat("\"");
         finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
         sb.Clear();
 
         //SPECIFIC OUTCOMES AFTER 1 YEAR OF USE:
-        //TODO include link
-        //https://nanpa.org/2021/06/11/drone-crash-causes-birds-to-abandon-1500-eggs/#:~:text=A%20drone%2C%20flying%20over%20prohibited,AP%20and%20New%20York%20Times.
         if(protoDroneWeight <= 1.0 && protoDroneLifespan <= 10) {
             finalOutcomeDialogueSentences[outcomeNum++] = "Update after 1 year of use: \n"
             + "The drone was used near a nesting colony of elegant terns and unfortunately due to the drones"
@@ -670,30 +608,7 @@ public class CelluloGameController : MonoBehaviour
         
         Dialogue outcomeDialogue = new Dialogue();
 
-        //TODO last slide should you be
-        //You have reached the end, thank you for playing! or something like that
-        
         outcomeDialogue.sentences = finalOutcomeDialogueSentences;
         return outcomeDialogue;
     }
-
-    public void restartGame(){
-        resetStaticVariables();
-        SceneManager.LoadScene(0);    
-    }
-
-    private void resetStaticVariables(){
-        protoDroneSize = 25;
-        protoDroneWeight = 1.0;
-        protoDroneColor = "Blue";
-        protoFrameMaterial = "Aluminium";
-        protoDroneLifespan = 10;
-        protoPropellerMaterial = "Plastic";
-        has_wetsuit = false;
-        has_manual = false;
-        has_foldable_propellers = false;
-        remainingTime = 11; 
-        availableBalance = 300; 
-    }
-
 }

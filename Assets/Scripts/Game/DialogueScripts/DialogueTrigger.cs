@@ -18,7 +18,6 @@ public class DialogueTrigger : Button
         if(!hasBeenTriggered || allowRestart) {
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
             hasBeenTriggered = true;
-            Debug.Log("trigger Dialogue of buttom with name: " + this.name);
         }
     }
 
@@ -27,7 +26,6 @@ public class DialogueTrigger : Button
         if(!hasBeenTriggered || allowRestart) {
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
             hasBeenTriggered = true;
-            Debug.Log("trigger Dialogue of buttom with name: " + this.name);
         }
     }
   
