@@ -17671,7 +17671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6725a62630b78d4291b79abc1480abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerActive: 0
+  triggerActive: 1
   choiceText: 
   sentenceNum: 2
   subchoiceNum: 0
@@ -66259,7 +66259,7 @@ MonoBehaviour:
   choiceText: 
   sentenceNum: 2
   subchoiceNum: 0
-  isTutorial: 0
+  isTutorial: 1
   audioSource: {fileID: 743210855}
   audioSources: []
   celluloController: {fileID: 838800936}
