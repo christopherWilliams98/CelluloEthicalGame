@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using System.Timers;
+using UnityEngine.PlayerLoop;
 
 // List of possible locations to visit
 public enum choices
@@ -25,6 +26,7 @@ public enum choices
 
 public class CelluloGameController : MonoBehaviour
 {
+    private DataLogger dataLogger;
     private Color orange = new Color(254/255f, 97/255f, 0/255f, 1f);
     //Drone Specs
     private static int protoNoiseLevel = 80; // [db]
@@ -77,7 +79,11 @@ public class CelluloGameController : MonoBehaviour
             remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
             availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         }
-      
+
+        DataLogger dataLogger = GetComponent<DataLogger>();
+        DateTime now = DateTime.Now;
+        dataLogger.LogData("=-=-=-= Log for game session started at time:   " + now.ToString("yyyy-MM-dd HH:mm:ss") + "=-=-=-= \n\n");
+
         refreshDroneSpecs();
     }
 
@@ -159,10 +165,10 @@ public class CelluloGameController : MonoBehaviour
         acceptedSubChoiceNumber++;
     }
 
-    ///
+    /**
     /// Input: cost of currently selected subchoice
     /// Output: Boolean indicating if have enough resources
-    ///
+    **/
     public bool checkIfEnoughResources(float timeCost, int financialCost){
         //if not enough resources return false
         if(availableBalance < financialCost || remainingTime < timeCost){
@@ -179,6 +185,7 @@ public class CelluloGameController : MonoBehaviour
         float timeCost= (float)0.0;
         int financialCost = 0;
         bool isSuccessful = false;
+        string choiceId = "Invalid";
         //celluloController = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<MainCelluloController>();
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){ //repait drone white
@@ -187,6 +194,7 @@ public class CelluloGameController : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoDroneColor = "White";
                     isSuccessful = true;
+                    choiceId = " Drone Expert - Repaint drone white";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -199,10 +207,11 @@ public class CelluloGameController : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     has_manual = true;
                     isSuccessful = true;
+                    choiceId = " Drone Expert - Create manual";
                 } else {
                     notEnoughResources(celluloController);
                     return;
-                }
+                } 
             }
         }
         if(latestChoiceId == (int)choices.BirdExpert){
@@ -213,6 +222,7 @@ public class CelluloGameController : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoDroneColor = "Purple";
                     isSuccessful = true;
+                    choiceId = " Ornithologist - Repaint drone purple";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -224,6 +234,7 @@ public class CelluloGameController : MonoBehaviour
                     protoPropellerMaterial = "Carbon Fiber";
                     protoNoiseLevel -= 10;
                     isSuccessful = true;
+                    choiceId = " Ornithologist - Change propeller material to Carbon Fiber";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -240,6 +251,7 @@ public class CelluloGameController : MonoBehaviour
                     protoNoiseLevel += 10;
                     protoDroneLifespan += 5;
                     isSuccessful = true;
+                    choiceId = " City Park - Bigger battery";
                 } else
                 {
                     notEnoughResources(celluloController);
@@ -254,6 +266,7 @@ public class CelluloGameController : MonoBehaviour
                 if(checkIfEnoughResources(timeCost,financialCost)){
                     has_wetsuit = true;
                     isSuccessful = true;
+                    choiceId = " External Location - Add wetsuit";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -267,11 +280,12 @@ public class CelluloGameController : MonoBehaviour
                     protoNoiseLevel += 10;
                     protoDroneLifespan += 3;
                     isSuccessful = true;
+                    choiceId = " External Location - Bigger battery";
                 } else {
                     notEnoughResources(celluloController);
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 2) { //switch to carbon fiber
+            } else if(acceptedSubChoiceNumber == 2) { //switch to Carbon Fiber
                 timeCost = (float)1.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost,financialCost)){
@@ -281,6 +295,7 @@ public class CelluloGameController : MonoBehaviour
                         protoNoiseLevel -= 10;
                         protoDroneLifespan += 5;
                         isSuccessful = true;
+                        choiceId = " External Location - Change frame material to Carbon Fiber";
                     }
                     protoFrameMaterial = "Carbon Fiber";
                     
@@ -298,11 +313,12 @@ public class CelluloGameController : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     has_foldable_propellers = true;
                     isSuccessful = true;
+                    choiceId = " Town Council - Add foldable propellers";
                 } else {
                     notEnoughResources(celluloController);
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 1) { // Make drone lighter??
+            } else if(acceptedSubChoiceNumber == 1) { // Make drone lighter
                 timeCost = (float)1.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost,financialCost)){
@@ -310,6 +326,7 @@ public class CelluloGameController : MonoBehaviour
                     protoNoiseLevel -= 5;
                     protoDroneLifespan += 2;
                     isSuccessful = true;
+                    choiceId = " Town Council - Make drone lighter";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -325,6 +342,7 @@ public class CelluloGameController : MonoBehaviour
                     if(protoPropellerMaterial == "Plastic") {
                         protoNoiseLevel -= 10;
                         isSuccessful = true;
+                        choiceId = " Bird Reservoir - Change propeller material to Wood";
                     }
                     protoPropellerMaterial = "Wood";
                     
@@ -339,6 +357,7 @@ public class CelluloGameController : MonoBehaviour
                     protoFrameMaterial = "Wood";
                     protoDroneWeight += 0.5;
                     isSuccessful = true;
+                    choiceId = " Bird Reservoir - Change frame material to Wood";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -351,6 +370,7 @@ public class CelluloGameController : MonoBehaviour
                     protoDroneSize -= 10;
                     protoNoiseLevel -= 5;
                     isSuccessful = true;
+                    choiceId = " Bird Reservoir - Make drone smaller and lighter";
                 } else {
                     notEnoughResources(celluloController);
                     return;
@@ -366,6 +386,8 @@ public class CelluloGameController : MonoBehaviour
                     return; 
                 }else{
                     isSuccessful = true;
+                    choiceId = " Post office - Eco delivery";
+
                 }
             }else{
                 timeCost = (float)0.0;
@@ -375,6 +397,7 @@ public class CelluloGameController : MonoBehaviour
                     return; 
                 }else{
                     isSuccessful = true;
+                    choiceId = " Post office - Same day delivery";
                 }
             }
             GameObject allMaps = GameObject.Find("HouseMaps");
@@ -399,7 +422,11 @@ public class CelluloGameController : MonoBehaviour
         //display updates
         updateAvailableBalanceAndTimeForSubChoices(timeCost, financialCost);
         refreshDroneSpecs();
+        //Log data
+        dataLogger = GetComponent<DataLogger>();
+        dataLogger.LogData("Choice: " + choiceId + " was accepted at time: " + DateTime.Now.ToString("T") + "\n");
         
+
     }
 
     //Helper function that handles the event of not enough resources

@@ -54077,6 +54077,7 @@ GameObject:
   - component: {fileID: 1715440010}
   - component: {fileID: 1715440014}
   - component: {fileID: 1715440015}
+  - component: {fileID: 1715440016}
   m_Layer: 5
   m_Name: ChoiceSelection
   m_TagString: Untagged
@@ -54638,6 +54639,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1715440016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715440007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d4e8dde245a2d499fffb5cdce3d152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729433333
 GameObject:
   m_ObjectHideFlags: 0
