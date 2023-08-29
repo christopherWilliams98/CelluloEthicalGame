@@ -128,6 +128,8 @@ public class Interactable_Point : MonoBehaviour
             }
             // Find the text box for displaying the main dialogue
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
+            List<AudioSource> audioSources = new List<AudioSource>(FindObjectsOfType<AudioSource>());
+
             // Store the current text in the text box
             temp = textBox.text;
 
@@ -184,11 +186,16 @@ public class Interactable_Point : MonoBehaviour
                     }
                     break;
 
+                case "SkipTutorialPad":
+                    // Set the text for the SkipTutorialPad
+                    textBox.text = "If you know how to operate a cellulo robot and you are already familiar with the game, you can skip the tutorial by proceeding through this pad.";
+                    ChoicePoint.StopAllAudio(audioSources);
+                    break;
+
                 case "TutorialReturnPad":
                     // Set the text and play an audio for the TutorialReturnPad
                     textBox.text = "You're all set to go! Home pads like this one allow you return to the main map once you're done making choices in a location. To interact with the pad, touch and hold any of the white lights on the robot, just as you would on a grey doorway pad. When you're ready, give it a try!\nThis will start the game.";
                     AudioSource allSet = GameObject.Find("all set to go").GetComponent<AudioSource>();
-                    List<AudioSource> audioSources = new List<AudioSource>(FindObjectsOfType<AudioSource>());
                     ChoicePoint.StopAllAudio(audioSources);
                     allSet.Play();
                     break;
@@ -199,7 +206,6 @@ public class Interactable_Point : MonoBehaviour
             }
         }
     }
-
 
     // Deactivate pad interaction when a player leaves its range
     public void OnTriggerExit(Collider other)
@@ -235,18 +241,33 @@ public class Interactable_Point : MonoBehaviour
 
         celluloController.reset_leds();
 
-        if(this.gameObject.name == "ReturnPad" || this.gameObject.name == "TutorialReturnPad")
+        if(this.gameObject.name == "SkipTutorialPad"){
+            // Skip the tutorial
+            Transform UICanvas = GameObject.Find("UICanvas").gameObject.transform;
+
+            for(int i = 0; i < UICanvas.childCount; i++){
+                Transform element = UICanvas.GetChild(i);
+                if(element.gameObject.activeSelf == false){
+                    element.gameObject.SetActive(true);
+                } 
+            }
+        }
+
+        if(this.gameObject.name == "ReturnPad" || this.gameObject.name == "TutorialReturnPad" || this.gameObject.name == "SkipTutorialPad")
         {
             // Enable all other house pads, disable return pad and choice pads
             if(allPads!=null){
                 allPads.SetActive(true);
-            } 
+
+            }  
             if(returnPad != null){
                 returnPad.SetActive(false);
+
             } 
             foreach(Transform choicePad in GameObject.Find("ChoicePads").transform){
                 if(choicePad.gameObject.activeSelf == true){
                     choicePad.gameObject.SetActive(false);
+
                 }
             }
 

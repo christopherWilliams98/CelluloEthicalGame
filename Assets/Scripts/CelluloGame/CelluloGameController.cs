@@ -41,8 +41,8 @@ public class CelluloGameController : MonoBehaviour
     public Image droneImage;
     public Sprite droneWhiteSpriteImage;
     public Sprite dronePurpleSpriteImage;
+    public MainCelluloController celluloController;
     
-
     //Main dialogue text
     public DialogueTrigger EnterButton;
     public TextMeshProUGUI dialogueTextBox;
@@ -70,6 +70,8 @@ public class CelluloGameController : MonoBehaviour
     // -----------------------------------------------------------------------------
     void Start()
     {   
+        Screen.SetResolution(1920, 1080, false); // false indicates windowed mode
+
         //Print balance and drone specs 
         if(SceneManager.GetActiveScene().name == "DroneGameCellulo") {
             remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
@@ -92,6 +94,7 @@ public class CelluloGameController : MonoBehaviour
             dialogueTextBox.gameObject.transform.parent.gameObject.SetActive(false);
         }
     }
+
     
     Dictionary<string, int> locations = new Dictionary<string, int>(){
         {"None", 0},
@@ -176,7 +179,7 @@ public class CelluloGameController : MonoBehaviour
         float timeCost= (float)0.0;
         int financialCost = 0;
         bool isSuccessful = false;
-        MainCelluloController celluloController = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<MainCelluloController>();
+        //celluloController = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<MainCelluloController>();
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){ //repait drone white
                 timeCost= (float)0.5;
@@ -391,7 +394,7 @@ public class CelluloGameController : MonoBehaviour
             GameObject.Find("ReturnPad").SetActive(false);
         }
         if(isSuccessful){
-            celluloController.set_leds_green();
+            celluloController?.set_leds_green();
         }
         //display updates
         updateAvailableBalanceAndTimeForSubChoices(timeCost, financialCost);
@@ -604,7 +607,7 @@ public class CelluloGameController : MonoBehaviour
             + "Although not perfect the drone has been a great help!";
         }
 
-        finalOutcomeDialogueSentences[outcomeNum++] = "Thank you for playing!";
+        finalOutcomeDialogueSentences[outcomeNum++] = "Thank you for playing! \n \n Project adapted from Giannis original game. \n \n Project Supervisors: Isaac Siara Ruth, Daniel Tazadore, Barbara Bruno \n \n Code : Stefan Popescu, Christopher Williams \n \n Funded by EPFL, CHILI and LEARN Labs";
         
         Dialogue outcomeDialogue = new Dialogue();
 

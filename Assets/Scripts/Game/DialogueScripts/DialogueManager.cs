@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
- 
+
 public class DialogueManager : MonoBehaviour
 {
     public Button continueButton; 
@@ -35,7 +35,6 @@ public class DialogueManager : MonoBehaviour
             sentences.Add(sentence);
         }
         DisplayNextSentence();
-
     }
     
     /**
@@ -68,7 +67,6 @@ public class DialogueManager : MonoBehaviour
         }
         waitTillFinishTyping = false;
     }
-
 
     public void acceptChanges(int acceptedSubChoiceNumber){
         gameController.updateDroneRangesAndResources(acceptedSubChoiceNumber);  //update display of drone Ranges and balance

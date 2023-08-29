@@ -53,9 +53,7 @@ public class ChoicePoint : MonoBehaviour
                     choiceText = dialogueManager.DisplayNextSentence(sentenceNum);
                     // Enable the final tutorial dialogue pad
                     Transform child = GameObject.Find("TutorialBus").gameObject.transform.GetChild(0);
-                    if(child != null){
-                        child.gameObject.SetActive(true);
-                    }
+                    child?.gameObject.SetActive(true);
 
                     Transform UICanvas = GameObject.Find("UICanvas").gameObject.transform;
                     for(int i = 0; i < UICanvas.childCount; i++){
@@ -64,7 +62,10 @@ public class ChoicePoint : MonoBehaviour
                             element.gameObject.SetActive(true);
                         } 
                     }
-                }else{ 
+                }else{
+                    //Debug.Log("celluloController: " + celluloController);
+                    //Debug.Log("dialogueManager: " + dialogueManager);
+
                     // Simply accept
                     dialogueManager.acceptChanges(subchoiceNum);
                 }
@@ -95,9 +96,8 @@ public class ChoicePoint : MonoBehaviour
                         }
                     }
                 }
-
-                
             }
+
 
             // If this is a choice point (not a dialogue pad), light up cellulo LEDs to indicate its current state
             if(this.name != "DialoguePad"){
@@ -126,8 +126,6 @@ public class ChoicePoint : MonoBehaviour
             
         }
     }
-
-
 
     // Deactivate the choice point when a player leaves its range
     void OnTriggerExit(Collider other)
