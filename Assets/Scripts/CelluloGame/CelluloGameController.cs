@@ -26,7 +26,7 @@ public enum choices
 
 public class CelluloGameController : MonoBehaviour
 {
-    private DataLogger dataLogger;
+    public DataLogger dataLogger;
     private Color orange = new Color(254/255f, 97/255f, 0/255f, 1f);
     //Drone Specs
     private static int protoNoiseLevel = 80; // [db]
@@ -71,7 +71,7 @@ public class CelluloGameController : MonoBehaviour
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
     // -----------------------------------------------------------------------------
     void Start()
-    {   
+    {
         Screen.SetResolution(1920, 1080, false); // false indicates windowed mode
 
         //Print balance and drone specs 
@@ -80,11 +80,27 @@ public class CelluloGameController : MonoBehaviour
             availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         }
 
-        DataLogger dataLogger = GetComponent<DataLogger>();
-        DateTime now = DateTime.Now;
-        dataLogger.LogData("=-=-=-= Log for game session started at time:   " + now.ToString("yyyy-MM-dd HH:mm:ss") + "=-=-=-= \n\n");
+        dataLogger = GetComponent<DataLogger>();
+
+        if(dataLogger == null)
+        {
+            Debug.LogError("DataLogger reference not set in ChoiceSelection.");
+            return;
+        }
 
         refreshDroneSpecs();
+    }
+
+    public void LogDataViaController(string dataToLog)
+    {
+        if (dataLogger != null)
+        {
+            dataLogger.LogData(dataToLog);
+        }
+        else
+        {
+            Debug.LogError("DataLogger not found on this GameObject.");
+        }
     }
 
 
@@ -423,7 +439,7 @@ public class CelluloGameController : MonoBehaviour
         updateAvailableBalanceAndTimeForSubChoices(timeCost, financialCost);
         refreshDroneSpecs();
         //Log data
-        dataLogger = GetComponent<DataLogger>();
+
         dataLogger.LogData("Choice: " + choiceId + " was accepted at time: " + DateTime.Now.ToString("T") + "\n");
         
 
@@ -634,7 +650,7 @@ public class CelluloGameController : MonoBehaviour
             + "Although not perfect the drone has been a great help!";
         }
 
-        finalOutcomeDialogueSentences[outcomeNum++] = "Thank you for playing! \n \n Project adapted from Giannis original game. \n \n Project Supervisors: Isaac Siara Ruth, Daniel Tazadore, Barbara Bruno \n \n Code : Stefan Popescu, Christopher Williams \n \n Funded by EPFL, CHILI and LEARN Labs";
+        finalOutcomeDialogueSentences[outcomeNum++] = "Thank you for playing! \n \n Project adapted from Gianni Lodetti\'s original game. \n \n Project Supervisors: Siara Isaac, Daniel Tazadore, Barbara Bruno \n \n Code : Stefan Popescu, Christopher Williams \n \n Funded by EPFL, CHILI and LEARN Labs";
         
         Dialogue outcomeDialogue = new Dialogue();
 

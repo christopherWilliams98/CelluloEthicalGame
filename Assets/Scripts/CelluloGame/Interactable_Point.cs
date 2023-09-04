@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
 
 /*
     * This script is attached to the pads in the house maps
@@ -26,7 +28,7 @@ public class Interactable_Point : MonoBehaviour
     public int sentenceNum;
     private bool once = true;
     public AudioSource enterSound;
-    private AudioSource greetings; 
+    private AudioSource greetings;
 
 
     private void Update()
@@ -255,6 +257,11 @@ public class Interactable_Point : MonoBehaviour
 
         if(this.gameObject.name == "ReturnPad" || this.gameObject.name == "TutorialReturnPad" || this.gameObject.name == "SkipTutorialPad")
         {
+            if(this.gameObject.name != "ReturnPad"){
+                DateTime now = DateTime.Now;
+                gameController.LogDataViaController("=-=-=-= Log for game session started at time:   " + now.ToString("yyyy-MM-dd HH:mm:ss") + "=-=-=-= \n\n");
+            }
+
             // Enable all other house pads, disable return pad and choice pads
             if(allPads!=null){
                 allPads.SetActive(true);
@@ -262,6 +269,7 @@ public class Interactable_Point : MonoBehaviour
             }  
             if(returnPad != null){
                 returnPad.SetActive(false);
+                
 
             } 
             foreach(Transform choicePad in GameObject.Find("ChoicePads").transform){
@@ -275,6 +283,9 @@ public class Interactable_Point : MonoBehaviour
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
             textBox.text = "";
 
+             TextMeshProUGUI skipText = GameObject.Find("Skip_text").GetComponent<TextMeshProUGUI>();
+            skipText.text = "";
+
             //set all the house maps to inactive
             foreach(Transform house in GameObject.Find("HouseMaps").transform)
             {
@@ -286,10 +297,13 @@ public class Interactable_Point : MonoBehaviour
         
         else{
             // Enter the desired house 
-            if(teleportLocation != null){
-                teleportLocation.SetActive(true);
+            teleportLocation?.SetActive(true);
+
+            if(teleportLocation.name == "TutorialBus"){
+                TextMeshProUGUI skipText = GameObject.Find("Skip_text").GetComponent<TextMeshProUGUI>();
+                skipText.text = "";
             }
-            
+
             // Move the drone while testing in the city park
             if(teleportLocation.name == "CityPark"){
                 GameObject droneImage = GameObject.Find("DroneImage");
