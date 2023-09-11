@@ -64,6 +64,38 @@ public class Interactable_Point : MonoBehaviour
             Interact(); 
         }
     }
+
+    private IEnumerator PlaySoundsSequentially(string[] audioNames)
+    {
+
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+
+        // Stop all audio sources
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Stop();
+        }
+
+        // Play the audio sources in the order specified in the audioNames array
+
+        foreach (string audioName in audioNames)
+        {
+            foreach (AudioSource audioSource in allAudioSources)
+            {
+
+                if (audioSource.name == audioName)
+                {
+                    audioSource.Play();
+                    while (audioSource.isPlaying)
+                    {
+                        yield return null;  // Wait until the clip finishes playing
+                    }
+                    break;  // Once we found and played the right audio source, move to the next name
+                }
+            }
+        }
+    }
+
     public void endingHandler()
     {
         // Find the DialogueManager in the scene
@@ -79,6 +111,7 @@ public class Interactable_Point : MonoBehaviour
             // If it's the first sentence, start the dialogue with the computed dialogue and display it in the text box
             dialogueManager.StartDialogue(dialogue, textBox);
             sentenceNum++;
+
         }
         else{
             // If it's not the first sentence, display the next sentence in the dialogue
@@ -89,6 +122,10 @@ public class Interactable_Point : MonoBehaviour
         GameObject allScientists = GameObject.Find("Scientists");
 
         switch(sentenceNum){
+            case 1:
+
+                StartCoroutine(PlaySoundsSequentially(gameController.ansleyAudio.ToArray()));
+                break;
             case 2:
                 // Switch the sprite of scientists based on the sentence number
                 for(int i = 0; i < allScientists.transform.childCount; i++){
@@ -110,8 +147,7 @@ public class Interactable_Point : MonoBehaviour
                         allScientists.transform.GetChild(i).gameObject.SetActive(true);
                     }
                 }
-                break; 
-                
+                break;
         }
     }
 
@@ -261,6 +297,9 @@ public class Interactable_Point : MonoBehaviour
                 DateTime now = DateTime.Now;
                 gameController.LogDataViaController("=-=-=-= Log for game session started at time:   " + now.ToString("yyyy-MM-dd HH:mm:ss") + "=-=-=-= \n\n");
             }
+            else{
+                gameController.LogDataViaController("Location left at time: " + DateTime.Now.ToString("T") + "\n");
+            }
 
             // Enable all other house pads, disable return pad and choice pads
             if(allPads!=null){
@@ -270,7 +309,6 @@ public class Interactable_Point : MonoBehaviour
             if(returnPad != null){
                 returnPad.SetActive(false);
                 
-
             } 
             foreach(Transform choicePad in GameObject.Find("ChoicePads").transform){
                 if(choicePad.gameObject.activeSelf == true){
@@ -325,11 +363,10 @@ public class Interactable_Point : MonoBehaviour
                 returnPad.SetActive(true);
             } 
             gameController.lockInChoice();
+
+            gameController.LogDataViaController("Location: " + teleportLocation.name + " - was entered at time: " + DateTime.Now.ToString("T") + "\n");
+
         }
     }
-
-   
-
-
     
 }

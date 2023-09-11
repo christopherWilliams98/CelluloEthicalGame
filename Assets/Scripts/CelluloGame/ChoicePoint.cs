@@ -9,6 +9,7 @@ public class ChoicePoint : MonoBehaviour
     private bool isMakingChoice;
     private string previousTextboxText;
     public string choiceText = "";
+    public string choiceStringId;
     public int sentenceNum;
     public int subchoiceNum;
     private bool hasBeenUsed = false;
@@ -18,6 +19,7 @@ public class ChoicePoint : MonoBehaviour
     public List<AudioSource> audioSources;
     int choice = -1;
     public MainCelluloController celluloController;
+    public double timeSpent;
 
     // Initialize audio sources
     void Start()
@@ -71,6 +73,9 @@ public class ChoicePoint : MonoBehaviour
                 }
                 hasBeenUsed = true; // Mark the choice point as used so that the choice cannot be repeated
             }
+            else{
+                timeSpent += Time.deltaTime;
+            }
         }else {
             // Do nothing
         }
@@ -98,7 +103,6 @@ public class ChoicePoint : MonoBehaviour
                 }
             }
 
-
             // If this is a choice point (not a dialogue pad), light up cellulo LEDs to indicate its current state
             if(this.name != "DialoguePad"){
                 if(!hasBeenUsed){
@@ -107,7 +111,6 @@ public class ChoicePoint : MonoBehaviour
                     isMakingChoice = true;
                 }
             }
-
 
             // Save the current dialogue text in case the player leaves the range of the choice point
             TextMeshProUGUI textBox = GameObject.Find("main_dialog").GetComponent<TextMeshProUGUI>();
@@ -123,7 +126,6 @@ public class ChoicePoint : MonoBehaviour
             }
             
             triggerActive = true; // Enable possible interaction with the pad
-            
         }
     }
 

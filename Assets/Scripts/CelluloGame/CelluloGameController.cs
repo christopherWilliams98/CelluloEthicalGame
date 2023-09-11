@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Timers;
 using UnityEngine.PlayerLoop;
+using System.Linq;
 
 // List of possible locations to visit
 public enum choices
@@ -44,12 +45,16 @@ public class CelluloGameController : MonoBehaviour
     public Sprite droneWhiteSpriteImage;
     public Sprite dronePurpleSpriteImage;
     public MainCelluloController celluloController;
-    
     //Main dialogue text
     public DialogueTrigger EnterButton;
     public TextMeshProUGUI dialogueTextBox;
-   
+    public List<(String subChoiceNumber, double? timeSpent)> sortedTimeSpentList = new List<(String subChoiceNumber, double? timeSpent)>();
 
+    //Audio
+    public List<string> ansleyAudio = new List<string>();
+    public List<string> davinaAudio = new List<string>();
+    public List<string> fionaAudio = new List<string>();
+    
     //Array of locked choice and choice selection objects
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
 
@@ -403,7 +408,6 @@ public class CelluloGameController : MonoBehaviour
                 }else{
                     isSuccessful = true;
                     choiceId = " Post office - Eco delivery";
-
                 }
             }else{
                 timeCost = (float)0.0;
@@ -416,6 +420,7 @@ public class CelluloGameController : MonoBehaviour
                     choiceId = " Post office - Same day delivery";
                 }
             }
+            
             GameObject allMaps = GameObject.Find("HouseMaps");
                 for(int i = 0; i < allMaps.transform.childCount; i++){
                     if(allMaps.transform.GetChild(i).gameObject.name == "Ending"){
@@ -426,7 +431,7 @@ public class CelluloGameController : MonoBehaviour
                     if(allMaps.transform.GetChild(i).gameObject.name == "PostOffice"){
                         allMaps.transform.GetChild(i).gameObject.SetActive(false);
                     }
-                }
+                } 
             // Disable original dialogue box
             GameObject.Find("MainTextBox").SetActive(false);
             GameObject.Find("Dialog Box Frame").SetActive(false);
@@ -441,8 +446,77 @@ public class CelluloGameController : MonoBehaviour
         //Log data
 
         dataLogger.LogData("Choice: " + choiceId + " was accepted at time: " + DateTime.Now.ToString("T") + "\n");
-        
 
+        if(choiceId == " Post office - Same day delivery" || choiceId == " Post office - Eco delivery"){
+            endingHelper();
+        }
+    }
+
+    private void endingHelper(){
+            stopAllAudio();
+            findSortListChoiceTimes();
+            logResults();
+            endingAudio();
+    }
+
+    private void stopAllAudio(){
+        AudioSource[] audioSources = GameObject.FindObjectsOfType<AudioSource>();
+        foreach(AudioSource audioSource in audioSources){
+            audioSource.Stop();
+        }
+    }
+
+    private void endingAudio(){
+        AudioSource[] audioSources = GameObject.FindObjectsOfType<AudioSource>();
+        foreach(AudioSource audioSource in audioSources){
+            if(audioSource.gameObject.name == "You have made it to the end of the semester"){
+                audioSource.Play();
+            }
+        }
+    }
+
+    //Helper function that sorts and then logs in the data log all of the time spent on each choice pad.
+    private void findSortListChoiceTimes(){
+
+        // Find all the choice pads in the scene.
+        GameObject choicepads = GameObject.Find("ChoicePads");
+
+        foreach (Transform child in choicepads.transform) //Iterate over children of choicepads.
+        {
+            TraverseSubchildren(child);
+        }
+        
+        // Sort the list based on timeSpent.
+        sortedTimeSpentList = sortedTimeSpentList.OrderBy(tuple => tuple.timeSpent).Reverse().ToList();
+    }
+
+    private void TraverseSubchildren(Transform currentChild)
+    {
+        if (currentChild.gameObject.name == "dialoguePad")
+        {
+            return; // Skip if it's a dialoguePad.
+        }
+
+        double? timeSpent = currentChild.GetComponent<ChoicePoint>()?.timeSpent;
+        if (timeSpent != null && timeSpent != 0) // If the child has a TimeSpentComponent.
+        {
+            sortedTimeSpentList.Add((currentChild.GetComponent<ChoicePoint>().choiceStringId, timeSpent));
+        }
+
+        // Now recursively check its children.
+        foreach (Transform subChild in currentChild)
+        {
+            TraverseSubchildren(subChild);
+        }
+    }
+
+    private void logResults()
+    {
+        //log the data
+        dataLogger.LogData("+++++++ End of game ++++++ \n");
+        dataLogger.LogData("Results: \n     Time spent on each choice pad, descending order: \n");
+        string logMessage = string.Join("\n", sortedTimeSpentList.Select(tuple => $"        choice: {tuple.subChoiceNumber}, Time spent on pad: {tuple.timeSpent} seconds \n"));
+        dataLogger.LogData(logMessage);
     }
 
     //Helper function that handles the event of not enough resources
@@ -528,30 +602,34 @@ public class CelluloGameController : MonoBehaviour
 
     public Dialogue computeOutcomeDialogue(){
         int outcomeNum = 0;
- 
-
+        
         StringBuilder sb = new StringBuilder("", 500);
         string sentence = "";
         sb.AppendFormat("Ansley Smith: \n\n");
         sb.AppendFormat("\"");
         if(protoDroneColor.Equals("Blue")) {
-             sentence = "The color of drone is unfortunate because its color blends in with that of" + 
+             sentence = "The color of the drone is unfortunate because its color blends in with that of" + 
              " the sky, i often lose track of it and then lose time trying to find it.";
+             ansleyAudio.Add("The color of drone is unfortunate");
         } else if(protoDroneColor.Equals("White")) {
              sentence = "The white color of the drone is easy to spot in the sky however some birds" + 
-             " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
+             " have attacked the drone, maybe because white is seen as aggressive by some birds." ;
+             ansleyAudio.Add("The white color of the drone is easy to spot");    
         } else if(protoDroneColor.Equals("Purple")){
              sentence = "I like that you made the drone purple, most birds are not threatened "
              + "by this color and the drone remains clearly visible to the operator." ;  
+             ansleyAudio.Add("I like that you made the drone purple");
         }
         sb.AppendFormat(sentence + "\n\n");
         
         if(protoDroneSize <= 30) {
             sentence = "The size of the drone is small and easy to carry!, however on windy days it" 
             + " is not as stable as previous drones.";
+            ansleyAudio.Add("The size of the drone is small");
         } else if(protoDroneSize > 30) {
             sentence  = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
             "would be useful";
+            ansleyAudio.Add("The drone is pretty big");
         }
         sb.AppendFormat(sentence + "\n\n");
 
@@ -560,12 +638,15 @@ public class CelluloGameController : MonoBehaviour
         if(protoDroneLifespan <= 15) {
             sentence =  "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
             "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!";
+            ansleyAudio.Add("Drone was light and easy to carry");
         }else if(protoDroneLifespan > 15 && protoDroneLifespan <= 20) {
             sentence = "Long flying time from the big battery was a great improvement from our last drone,"
         + " and the drone was stable in the wind.";
+            ansleyAudio.Add("Long flying time from the big battery");
         }else {
             sentence = "This drone is capable of flying and observing birds for about 30 minutes, "+
             "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
+            ansleyAudio.Add("This drone is capable of flying");
         }
         sb.AppendFormat(sentence);
         sb.AppendFormat("\"");
