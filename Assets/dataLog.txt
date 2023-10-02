@@ -1,494 +1,124 @@
 Data Log for "Drone design challenge"
-=-=-=-= Log for game session started at time:   2023-09-04 13:46:10=-=-=-= 
 
+=-=-=-= Log for game session started at time:   2023-10-02 13:54:38=-=-=-= 
 
-Location: ExternalLocation - was entered at time: 1:46:13 PM
 
-Choice:  External Location - Add wetsuit was accepted at time: 1:46:25 PM
+Location: PostOffice - was entered at time: 1:54:41 PM
 
-Choice:  External Location - Bigger battery was accepted at time: 1:46:28 PM
-
-Choice:  External Location - Change frame material to Carbon Fiber was accepted at time: 1:46:33 PM
-
-Location: CityHall - was entered at time: 1:46:47 PM
-
-Location: Ornithologist - was entered at time: 1:46:59 PM
-
-Location: BirdReservoir - was entered at time: 1:47:13 PM
-
-Choice:  Bird Reservoir - Change propeller material to Wood was accepted at time: 1:47:20 PM
-
-Location: Ornithologist - was entered at time: 1:47:27 PM
-
-Location: CityPark - was entered at time: 1:47:40 PM
-
-Location: TechShop - was entered at time: 1:47:52 PM
-
-Location: PostOffice - was entered at time: 1:48:03 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 1:48:12 PM
-
-=-=-=-= Log for game session started at time:   2023-09-04 14:34:10=-=-=-= 
-
-
-Location: CityHall - was entered at time: 2:34:18 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 2:34:24 PM
-
-Choice:  Town Council - Make drone lighter was accepted at time: 2:41:49 PM
-
-Location left at time: 2:41:57 PM
-
-Location: PostOffice - was entered at time: 2:42:01 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:42:03 PM
-
-Location: TutorialBus - was entered at time: 3:18:15 PM
-
-=-=-=-= Log for game session started at time:   2023-09-08 18:27:46=-=-=-= 
-
-
-Location: ExternalLocation - was entered at time: 6:27:50 PM
-
-=-=-=-= Log for game session started at time:   2023-09-08 18:36:12=-=-=-= 
-
-
-Location: CityHall - was entered at time: 6:36:26 PM
-
-Location left at time: 6:36:36 PM
-
-Location: ExternalLocation - was entered at time: 6:36:39 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 15:20:37=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 3:20:41 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:20:45 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 15:22:51=-=-=-= 
-
-
-Location: CityHall - was entered at time: 3:22:54 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 3:23:02 PM
-
-Location left at time: 3:23:05 PM
-
-Location: PostOffice - was entered at time: 3:23:07 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:23:09 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 15:24:02=-=-=-= 
-
-
-Location: CityHall - was entered at time: 3:24:06 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 3:24:12 PM
-
-Location left at time: 3:24:14 PM
-
-Location: PostOffice - was entered at time: 3:24:17 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:24:18 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 15:26:06=-=-=-= 
-
-
-Location: CityHall - was entered at time: 3:26:08 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 3:26:15 PM
-
-Location left at time: 3:26:17 PM
-
-Location: PostOffice - was entered at time: 3:26:19 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:26:21 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 15:29:01=-=-=-= 
-
-
-Location: CityHall - was entered at time: 3:29:04 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 3:29:11 PM
-
-Choice:  Town Council - Make drone lighter was accepted at time: 3:29:20 PM
-
-Location left at time: 3:29:28 PM
-
-Location: PostOffice - was entered at time: 3:29:30 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:29:33 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 16:52:08=-=-=-= 
-
-
-Location: CityHall - was entered at time: 4:52:11 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 4:52:20 PM
-
-Choice:  Town Council - Make drone lighter was accepted at time: 4:52:27 PM
-
-Location left at time: 4:52:35 PM
-
-Location: PostOffice - was entered at time: 4:52:37 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 4:52:38 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 17:24:45=-=-=-= 
-
-
-Location: CityHall - was entered at time: 5:24:48 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 5:24:56 PM
-
-Location left at time: 5:25:15 PM
-
-Location: PostOffice - was entered at time: 5:25:17 PM
-
-Choice:  Post office - Same day delivery was accepted at time: 5:25:24 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 18:21:09=-=-=-= 
-
-
-=-=-=-= Log for game session started at time:   2023-09-10 18:22:49=-=-=-= 
-
-
-Location: CityHall - was entered at time: 6:22:51 PM
-
-Choice:  Town Council - Add foldable propellers was accepted at time: 6:23:00 PM
-
-Location left at time: 6:23:16 PM
-
-Location: BirdReservoir - was entered at time: 6:23:24 PM
-
-Choice:  Bird Reservoir - Change propeller material to Wood was accepted at time: 6:23:33 PM
-
-Location left at time: 6:24:14 PM
-
-Location: PostOffice - was entered at time: 6:24:16 PM
-
-Choice:  Post office - Same day delivery was accepted at time: 6:24:26 PM
-
-=-=-=-= Log for game session started at time:   2023-09-10 18:43:46=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 6:43:49 PM
+Choice:  Post office - Eco delivery was accepted at time: 1:54:43 PM
 
 +++++++ End of game ++++++ 
 
 Results: 
      Time spent on each choice pad, descending order: 
 
-        choice:  Post office - Eco delivery, Time spent on pad: 0.416446801275015 seconds 
+        choice:  Post office - Eco delivery, Time spent on pad: 0.60097999998834 seconds 
 
-Choice:  Post office - Eco delivery was accepted at time: 6:43:51 PM
+Outcome dialogue: 
 
-=-=-=-= Log for game session started at time:   2023-09-10 20:27:43=-=-=-= 
+Ansley Smith: 
 
+"The color of the drone is unfortunate because its color blends in with that of the sky, i often lose track of it and then lose time trying to find it.
 
-Location: CityHall - was entered at time: 8:27:46 PM
+The size of the drone is small and easy to carry!, however on windy days it is not as stable as previous drones.
 
-Choice:  Town Council - Add foldable propellers was accepted at time: 8:27:51 PM
+Drone was light and easy to carry, but short flying time meant it felt like a lot of work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!"
 
-Location left at time: 8:28:07 PM
+Davina Murphy: 
 
-Location: PostOffice - was entered at time: 8:28:10 PM
+"Unfortunately that just our previous drone we had, we are not able to use it under rainy conditions.
 
-Choice:  Post office - Eco delivery was accepted at time: 8:28:17 PM
+Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, we will see if those starting next year also will.
 
-+++++++ End of game ++++++ 
+The plastic propellers of the drone make a lot of noise, and on occasion seems to scare off or disturb some of the birds, however the flexibility of the propellers makes the drone less harmful in case of a collision with a bird."
 
-Results: 
-     Time spent on each choice pad, descending order: 
+Fiona Wattson: 
 
-        choice:  Post office - Eco delivery, Time spent on pad: 7.39984001033008 seconds 
+"The drone is quite big and cumbersome to carry over long distances, perhaps using foldable propellers would make it easier to carry in a smaller bag.
 
-        choice:  Town Council - Make drone lighter, Time spent on pad: 2.75044800154865 seconds 
+Drone was light and nimble."
 
-        choice:  Town Council - Add foldable propellers, Time spent on pad: 0.300667598843575 seconds 
+Update after 1 year of use: 
+The drone was used near a nesting colony of elegant terns and unfortunately due to the drones short lifespan and high winds that day, we were unable to return the drone in time and it crashed, scaring away the colony and abandoning their eggs!.
 
-=-=-=-= Log for game session started at time:   2023-09-11 12:58:35=-=-=-= 
+=-=-=-= Log for game session started at time:   2023-10-02 16:38:30=-=-=-= 
 
 
-Location: ExternalLocation - was entered at time: 12:58:38 PM
+=-=-=-= Log for game session started at time:   2023-10-02 17:48:15=-=-=-= 
 
-Location left at time: 12:58:42 PM
 
-Location: PostOffice - was entered at time: 12:58:44 PM
+Location: BirdReservoir - was entered at time: 5:48:26 PM
 
-Choice:  Post office - Eco delivery was accepted at time: 12:58:46 PM
+Choice:  Bird Reservoir - Change propeller material to Wood was accepted at time: 5:48:35 PM
 
-+++++++ End of game ++++++ 
+Choice:  Bird Reservoir - Change frame material to Wood was accepted at time: 5:48:41 PM
 
-Results: 
-     Time spent on each choice pad, descending order: 
+Choice:  Bird Reservoir - Make drone smaller and lighter was accepted at time: 5:48:50 PM
 
-        choice:  Post office - Eco delivery, Time spent on pad: 0.383005702868104 seconds 
+=-=-=-= Log for game session started at time:   2023-10-02 17:58:38=-=-=-= 
 
-=-=-=-= Log for game session started at time:   2023-09-11 13:29:16=-=-=-= 
 
+Location: ExternalLocation - was entered at time: 5:58:53 PM
 
-Location: PostOffice - was entered at time: 1:29:20 PM
+Choice:  External Location - Add wetsuit was accepted at time: 5:59:02 PM
 
-Choice:  Post office - Eco delivery was accepted at time: 1:29:24 PM
+Choice:  External Location - Bigger battery was accepted at time: 5:59:08 PM
 
-+++++++ End of game ++++++ 
+Choice:  External Location - Change frame material to Carbon Fiber was accepted at time: 5:59:18 PM
 
-Results: 
-     Time spent on each choice pad, descending order: 
+=-=-=-= Log for game session started at time:   2023-10-02 18:08:45=-=-=-= 
 
-        choice:  Post office - Eco delivery, Time spent on pad: 1.18329690210521 seconds 
 
-=-=-=-= Log for game session started at time:   2023-09-11 13:36:46=-=-=-= 
+Location: ExternalLocation - was entered at time: 6:08:52 PM
 
+Choice:  External Location - Add wetsuit was accepted at time: 6:09:00 PM
 
-Location: PostOffice - was entered at time: 1:36:49 PM
+Choice:  External Location - Bigger battery was accepted at time: 6:09:10 PM
 
-Choice:  Post office - Eco delivery was accepted at time: 1:36:53 PM
+=-=-=-= Log for game session started at time:   2023-10-02 18:11:20=-=-=-= 
 
-+++++++ End of game ++++++ 
 
-Results: 
-     Time spent on each choice pad, descending order: 
+Location: CityHall - was entered at time: 6:11:23 PM
 
-        choice:  Post office - Eco delivery, Time spent on pad: 1.56556720100343 seconds 
+Choice:  Town Council - Add foldable propellers was accepted at time: 6:11:29 PM
 
-=-=-=-= Log for game session started at time:   2023-09-11 13:38:21=-=-=-= 
+Choice:  Town Council - Make drone lighter was accepted at time: 6:11:48 PM
 
+=-=-=-= Log for game session started at time:   2023-10-02 18:13:15=-=-=-= 
 
-Location: PostOffice - was entered at time: 1:38:24 PM
 
-Choice:  Post office - Eco delivery was accepted at time: 1:38:29 PM
+Location: ExternalLocation - was entered at time: 6:13:17 PM
 
-+++++++ End of game ++++++ 
+Choice:  External Location - Add wetsuit was accepted at time: 6:13:25 PM
 
-Results: 
-     Time spent on each choice pad, descending order: 
+Choice:  External Location - Bigger battery was accepted at time: 6:13:32 PM
 
-        choice:  Post office - Eco delivery, Time spent on pad: 0.149821298196912 seconds 
+Choice:  External Location - Change frame material to Carbon Fiber was accepted at time: 6:13:39 PM
 
-=-=-=-= Log for game session started at time:   2023-09-11 13:44:09=-=-=-= 
+=-=-=-= Log for game session started at time:   2023-10-02 18:20:17=-=-=-= 
 
 
-Location: PostOffice - was entered at time: 1:44:14 PM
+Location: ExternalLocation - was entered at time: 6:20:19 PM
 
-Choice:  Post office - Eco delivery was accepted at time: 1:44:49 PM
+Choice:  External Location - Add wetsuit was accepted at time: 6:20:27 PM
 
-+++++++ End of game ++++++ 
+Choice:  External Location - Bigger battery was accepted at time: 6:20:35 PM
 
-Results: 
-     Time spent on each choice pad, descending order: 
+=-=-=-= Log for game session started at time:   2023-10-02 18:21:13=-=-=-= 
 
-        choice:  Post office - Eco delivery, Time spent on pad: 0.266895696520805 seconds 
 
-=-=-=-= Log for game session started at time:   2023-09-11 13:51:16=-=-=-= 
+Location: ExternalLocation - was entered at time: 6:21:14 PM
 
+Choice:  External Location - Add wetsuit was accepted at time: 6:21:22 PM
 
-Location: PostOffice - was entered at time: 1:51:22 PM
+Choice:  External Location - Bigger battery was accepted at time: 6:21:27 PM
 
-Choice:  Post office - Eco delivery was accepted at time: 1:51:26 PM
+=-=-=-= Log for game session started at time:   2023-10-02 18:23:19=-=-=-= 
 
-+++++++ End of game ++++++ 
 
-Results: 
-     Time spent on each choice pad, descending order: 
+Location: CityHall - was entered at time: 6:23:23 PM
 
-        choice:  Post office - Eco delivery, Time spent on pad: 0.416767000220716 seconds 
+Choice:  Town Council - Add foldable propellers was accepted at time: 6:23:29 PM
 
-=-=-=-= Log for game session started at time:   2023-09-11 13:52:23=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 1:52:28 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 1:52:31 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.234089097008109 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:31:56=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:32:08 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:32:21 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 8.61639322899282 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:47:51=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:48:00 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:48:02 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.249731700867414 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:49:14=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:49:17 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:49:19 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.350030899047852 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:50:57=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:50:59 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:51:02 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.682905599474907 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:51:54=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:51:58 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:52:00 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.233046701177955 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:54:18=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:54:21 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:54:25 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 1.21654460392892 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:57:01=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:57:04 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:57:06 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.599685198627412 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 14:59:06=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 2:59:10 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 2:59:12 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.616614999249578 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 15:00:00=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 3:00:02 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:00:04 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.299933899194002 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 15:01:43=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 3:01:46 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:01:48 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.316760595887899 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 15:05:29=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 3:05:32 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:05:34 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.333271702751517 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 15:06:52=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 3:06:56 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:06:58 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.466533603146672 seconds 
-
-=-=-=-= Log for game session started at time:   2023-09-11 15:09:35=-=-=-= 
-
-
-Location: PostOffice - was entered at time: 3:09:38 PM
-
-Choice:  Post office - Eco delivery was accepted at time: 3:09:40 PM
-
-+++++++ End of game ++++++ 
-
-Results: 
-     Time spent on each choice pad, descending order: 
-
-        choice:  Post office - Eco delivery, Time spent on pad: 0.466338599100709 seconds 
+Choice:  Town Council - Make drone lighter was accepted at time: 6:23:35 PM
 

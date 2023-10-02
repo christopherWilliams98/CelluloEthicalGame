@@ -39,7 +39,19 @@ public class CelluloGameController : MonoBehaviour
     private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
     private static bool has_manual = false;
-    private static bool has_foldable_propellers = false;
+    private static bool has_foldable_propellers = false;    
+    private static bool once = true;
+    private static int lastProtoNoiseLevel = 80;
+    private static int lastProtoDroneSize = 25;
+    private static double lastProtoDroneWeight = 1.0;
+    private static string lastProtoDroneColor = "Blue";
+    private static string lastProtoFrameMaterial = "Aluminium";
+    private static int lastProtoDroneLifespan = 10;
+    private static string lastProtoPropellerMaterial = "Plastic";
+    private static bool lastHas_wetsuit = false;
+    private static bool lastHas_manual = false;
+    private static bool lastHas_foldable_propellers = false;
+    private Dictionary<string, bool> changedSpecs = new Dictionary<string, bool>();
     public TextMeshProUGUI droneSpecsText;
     public Image droneImage;
     public Sprite droneWhiteSpriteImage;
@@ -94,6 +106,7 @@ public class CelluloGameController : MonoBehaviour
         }
 
         refreshDroneSpecs();
+        PlayConfirmationSound();
     }
 
     public void LogDataViaController(string dataToLog)
@@ -532,34 +545,125 @@ public class CelluloGameController : MonoBehaviour
         EnterButton.dialogueTextBox = this.dialogueTextBox;
         EnterButton.dialogue = new_dialogue;
     }
+    // Class-level variable to store which specs have changed.
 
-    //Updates the interface showing the drone specs 
-    private void refreshDroneSpecs(){
+
+    private void refreshDroneSpecs()
+    {
         StringBuilder sb = new StringBuilder("", 400);
         sb.AppendFormat("Prototype drone specs: \n");
-        sb.AppendFormat("Color: " + protoDroneColor + " \n");
-        sb.AppendFormat("Weight [kg]: " + string.Format("{0:F1}", protoDroneWeight) + " \n");
-        sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
-        sb.AppendFormat("Drone Frame Material: " + protoFrameMaterial + " \n");
-        sb.AppendFormat("Battery lifespan: " + protoDroneLifespan.ToString() + " minutes \n");
-        sb.AppendFormat("Propeller Material: " + protoPropellerMaterial + "\n");
-        sb.AppendFormat("Noise level: " + protoNoiseLevel + "\n");
+
+        bool shouldStartCoroutine = false;
+
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Color: ", protoDroneColor, lastProtoDroneColor);
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Weight [kg]: ", string.Format("{0:F1}", protoDroneWeight), string.Format("{0:F1}", lastProtoDroneWeight));
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Size [cm]: ", protoDroneSize.ToString(), lastProtoDroneSize.ToString());
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Drone Frame Material: ", protoFrameMaterial, lastProtoFrameMaterial);
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Battery lifespan: ", protoDroneLifespan.ToString() + " minutes", lastProtoDroneLifespan.ToString() + " minutes");
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Propeller Material: ", protoPropellerMaterial, lastProtoPropellerMaterial);
+        shouldStartCoroutine |= AppendFormattedSpec(sb, "Noise level: ", protoNoiseLevel.ToString(), lastProtoNoiseLevel.ToString());
+
         sb.AppendFormat("\n-----Extra Features----- \n");
-        if(has_wetsuit){
-            sb.AppendFormat("Wet suit available\n"); 
-        } 
-        if(has_manual){
-            sb.AppendFormat("Drone Manual available\n"); 
-        } 
-        if(has_foldable_propellers){
-            sb.AppendFormat("Foldable Propellers\n"); 
-        } 
+        if (has_wetsuit)
+        {
+            shouldStartCoroutine |= AppendFormattedBoolFeature(sb, "Wet suit available", has_wetsuit, lastHas_wetsuit);
+        }
+        if (has_manual)
+        {
+            shouldStartCoroutine |= AppendFormattedBoolFeature(sb, "Drone Manual available", has_manual, lastHas_manual);
+        }
+        if (has_foldable_propellers)
+        {
+            shouldStartCoroutine |= AppendFormattedBoolFeature(sb, "Foldable Propellers", has_foldable_propellers, lastHas_foldable_propellers);
+        }
+
         droneSpecsText.text = sb.ToString();
 
-        if(protoDroneColor == "White") {
+        if (protoDroneColor == "White")
+        {
             droneImage.sprite = droneWhiteSpriteImage;
-        } else if(protoDroneColor == "Purple") {
-            droneImage.sprite = dronePurpleSpriteImage; 
+        }
+        else if (protoDroneColor == "Purple")
+        {
+            droneImage.sprite = dronePurpleSpriteImage;
+        }
+
+        if (shouldStartCoroutine)
+        {
+            StartCoroutine(RevertColorAfterDelay());
+        }
+    }
+
+    private bool AppendFormattedSpec(StringBuilder sb, string label, string currentValue, string lastValue)
+    {
+        if (currentValue != lastValue)
+        {
+            sb.AppendFormat("<color=green>" + label + currentValue + "</color>\n");
+            return true;
+        }
+        else
+        {
+            sb.AppendFormat(label + currentValue + "\n");
+            return false;
+        }
+    }
+
+    private bool AppendFormattedBoolFeature(StringBuilder sb, string feature, bool currentValue, bool lastValue)
+    {
+        if (currentValue != lastValue && currentValue == true)
+        {
+            sb.AppendFormat("<color=green>" + feature + "</color>\n");
+            return true;
+        }
+        else if (currentValue)
+        {
+            sb.AppendFormat(feature + "\n");
+            return false;
+        }
+        return false;
+    }
+
+    IEnumerator RevertColorAfterDelay()
+    {
+        yield return new WaitForSeconds(2);
+        refreshDroneSpecs();
+        UpdateLastValues();
+    }
+
+    private void UpdateLastValues()
+    {
+    lastProtoDroneColor = protoDroneColor;
+    lastProtoDroneWeight = protoDroneWeight;
+    lastProtoDroneSize = protoDroneSize;
+    lastProtoFrameMaterial = protoFrameMaterial;
+    lastProtoDroneLifespan = protoDroneLifespan;
+    lastProtoPropellerMaterial = protoPropellerMaterial;
+    lastProtoNoiseLevel = protoNoiseLevel;
+    lastHas_wetsuit = has_wetsuit;
+    lastHas_manual = has_manual;
+    lastHas_foldable_propellers = has_foldable_propellers;
+    }
+    private void PlayConfirmationSound()
+    {
+        // Find the game object with the name "confirmation"
+        GameObject soundObject = GameObject.Find("confirmation");
+
+        // Check if the object exists and has an AudioSource component
+        if (soundObject != null)
+        {
+            AudioSource audioSource = soundObject.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogWarning("The 'confirmation' GameObject does not have an AudioSource component!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject named 'confirmation' found in the scene!");
         }
     }
 
@@ -736,6 +840,17 @@ public class CelluloGameController : MonoBehaviour
         Dialogue outcomeDialogue = new Dialogue();
 
         outcomeDialogue.sentences = finalOutcomeDialogueSentences;
+
+        
+        if(once){
+            //log the final outcome dialog.
+            dataLogger.LogData("Outcome dialogue: \n");
+            for(int i = 0; i < finalOutcomeDialogueSentences.Length -1; i++){
+                dataLogger.LogData(finalOutcomeDialogueSentences[i] + "\n");
+            }
+        once = false;
+        }
+
         return outcomeDialogue;
     }
 }

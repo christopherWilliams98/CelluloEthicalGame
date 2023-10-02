@@ -31,8 +31,6 @@ public class LogParser : MonoBehaviour
 
     private void ParseAndGenerateCSV(string textData)
     {
-        // Replace this with your log parsing and CSV generation logic.
-        // You can use the script provided earlier in this conversation to do that.
         LogToCSV logToCSV = new LogToCSV();
         logToCSV.ParseLogData(textData);
         logToCSV.GenerateCSV(Application.dataPath + "/game_data.csv");

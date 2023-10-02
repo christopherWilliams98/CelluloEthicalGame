@@ -197,7 +197,7 @@ public class Interactable_Point : MonoBehaviour
                 
                 case "ExternalLocationPad":
                     // Set the text for the ExternalLocationPad
-                    textBox.text = "Test drone on external location \n\n" + "COST: 1 week" + interactInstructionString;
+                    textBox.text = "Test drone on external location (in Scottish Highlands),  \n\n" + "COST: 1 week" + interactInstructionString;
                     break;
 
                 case "CityHallPad":

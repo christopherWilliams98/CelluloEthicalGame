@@ -42,6 +42,7 @@ public class ChoicePoint : MonoBehaviour
             if(choice == 0 || Input.GetKeyDown(KeyCode.F)){
                 // Accept
                 DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+                PlayConfirmationSound();
 
                 // TUTORIAL SPECIFIC INTERACTION
                 if(this.transform.parent.gameObject.name == "TutorialChoicePads"){
@@ -164,6 +165,29 @@ public class ChoicePoint : MonoBehaviour
             {
                 audioSource.Stop();
             }
+        }
+    }
+    private void PlayConfirmationSound()
+    {
+        // Find the game object with the name "confirmation"
+        GameObject soundObject = GameObject.Find("confirmation");
+
+        // Check if the object exists and has an AudioSource component
+        if (soundObject != null)
+        {
+            AudioSource audioSource = soundObject.GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogWarning("The 'confirmation' GameObject does not have an AudioSource component!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject named 'confirmation' found in the scene!");
         }
     }
 
